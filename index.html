@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purohith Services - Hindu Rituals</title>
+    <title>Purohith Services - Hindu Rituals, Music Classes & Bhagavad Gita</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -22,6 +22,30 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        /* Auspicious Symbols */
+        .auspicious-symbol {
+            font-size: 2rem;
+            display: inline-block;
+            animation: gentlePulse 2s infinite;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .om-symbol {
+            font-family: 'Segoe UI', serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+        }
+
+        .swastika {
+            font-size: 2rem;
+            display: inline-block;
+            transform: rotate(0deg);
         }
 
         /* Navigation */
@@ -51,6 +75,7 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -80,6 +105,26 @@
             color: white;
             text-align: center;
             padding: 100px 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "ॐ";
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.1;
+            bottom: 20px;
+            right: 20px;
+            font-family: serif;
+        }
+
+        .hero::after {
+            content: "卐";
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.1;
+            top: 20px;
+            left: 20px;
         }
 
         .hero h1 {
@@ -93,7 +138,7 @@
         }
 
         /* Buttons */
-        .btn-primary, .btn-secondary {
+        .btn-primary, .btn-secondary, .btn-donate, .btn-music {
             padding: 12px 30px;
             border: none;
             border-radius: 5px;
@@ -116,7 +161,19 @@
             border: 2px solid #FFD700;
         }
 
-        .btn-primary:hover, .btn-secondary:hover {
+        .btn-donate {
+            background: #4caf50;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-music {
+            background: #9c27b0;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover, .btn-secondary:hover, .btn-donate:hover, .btn-music:hover {
             transform: scale(1.05);
         }
 
@@ -135,6 +192,18 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "ॐ";
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.03;
+            bottom: -10px;
+            right: -10px;
+            font-family: serif;
         }
 
         .card:hover {
@@ -150,6 +219,222 @@
         .card h3 {
             color: #8B4513;
             margin-bottom: 1rem;
+        }
+
+        /* Special Cards */
+        .special-card {
+            background: linear-gradient(135deg, #fff5ed, #fff);
+            border: 2px solid #FFD700;
+        }
+
+        .free-class-card {
+            border: 2px solid #4caf50;
+            background: linear-gradient(135deg, #f0fff4, #fff);
+        }
+
+        .free-class-card i {
+            color: #4caf50;
+        }
+
+        /* Music Classes Section */
+        .music-section {
+            background: linear-gradient(135deg, #8B4513, #6a2e0f);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            margin: 60px 0;
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .music-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .music-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.25);
+        }
+
+        .music-price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        /* Bhagavad Gita Section */
+        .gita-section {
+            background: linear-gradient(rgba(76,175,80,0.9), rgba(56,142,60,0.9)), url('https://images.pexels.com/photos/239525/pexels-photo-239525.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .gita-schedule {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .schedule-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 10px;
+        }
+
+        /* Donation Section */
+        .donation-section {
+            background: linear-gradient(135deg, #8B4513, #5a2d0c);
+            color: white;
+            padding: 60px;
+            border-radius: 20px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .donation-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .donation-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-5px);
+        }
+
+        .donation-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #FFD700;
+        }
+
+        .upi-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .upi-id {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-family: monospace;
+            color: #8B4513;
+            display: inline-block;
+            margin: 15px 0;
+        }
+
+        .payment-apps {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .payment-app {
+            background: #f5f5f5;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .payment-app:hover {
+            background: #FFD700;
+            transform: translateY(-3px);
+        }
+
+        /* Horoscope Section */
+        .horoscope-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 60px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .horoscope-info {
+            background: #8B4513;
+            padding: 30px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .rashi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .rashi-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .rashi-item:hover {
+            background: #FFD700;
+            color: #8B4513;
+        }
+
+        .horoscope-result {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 400px;
+        }
+
+        /* GauSeva Section */
+        .gauseva-container {
+            background: linear-gradient(rgba(139,69,19,0.9), rgba(90,45,12,0.9)), url('https://images.pexels.com/photos/219966/pexels-photo-219966.jpeg');
+            background-size: cover;
+            color: white;
+            padding: 60px;
+            border-radius: 10px;
+            margin: 60px 0;
+            text-align: center;
         }
 
         /* Booking Form */
@@ -169,19 +454,6 @@
             padding: 30px;
             border-radius: 10px;
             color: white;
-        }
-
-        .booking-info ul {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .booking-info li {
-            margin-bottom: 15px;
-        }
-
-        .booking-info i {
-            margin-right: 10px;
         }
 
         .form-group {
@@ -283,17 +555,22 @@
             width: 25px;
         }
 
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-        }
-
         /* Footer */
         footer {
             background: #2c2c2c;
             color: white;
             padding: 40px 0 20px;
             margin-top: 60px;
+            position: relative;
+        }
+
+        footer::before {
+            content: "ॐ 卐 श्री";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1rem;
+            opacity: 0.3;
         }
 
         .footer-content {
@@ -339,17 +616,14 @@
             .mobile-menu {
                 display: block;
             }
-            .booking-container, .contact-container {
+            .booking-container, .contact-container, .horoscope-container {
                 grid-template-columns: 1fr;
             }
             .hero h1 {
                 font-size: 2rem;
             }
-            .hero-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
+            .music-section, .gita-section, .donation-section {
+                padding: 30px;
             }
         }
     </style>
@@ -359,13 +633,20 @@
         <div class="container">
             <div class="nav-content">
                 <div class="logo">
+                    <span class="auspicious-symbol">🕉️</span>
                     <i class="fas fa-om"></i>
                     <h2>Purohith Services</h2>
+                    <span class="swastika">卐</span>
                 </div>
                 <ul class="nav-links">
                     <li><a onclick="showPage('home')">Home</a></li>
                     <li><a onclick="showPage('services')">Services</a></li>
                     <li><a onclick="showPage('rituals')">Rituals</a></li>
+                    <li><a onclick="showPage('music')">Music Classes</a></li>
+                    <li><a onclick="showPage('gita')">Bhagavad Gita</a></li>
+                    <li><a onclick="showPage('horoscope')">Horoscope</a></li>
+                    <li><a onclick="showPage('gauseva')">GauSeva</a></li>
+                    <li><a onclick="showPage('donation')">Donations</a></li>
                     <li><a onclick="showPage('booking')">Book Now</a></li>
                     <li><a onclick="showPage('dashboard')">Dashboard</a></li>
                     <li><a onclick="showPage('contact')">Contact</a></li>
@@ -379,33 +660,60 @@
     <div id="homePage">
         <section class="hero">
             <div class="container">
-                <h1>शुभम करोति कल्याणम्</h1>
+                <h1>🕉️ श्री शुभम करोति कल्याणम् 卐</h1>
                 <p>Traditional Hindu Rituals & Ceremonies by Experienced Purohith</p>
+                <p style="font-size: 1rem;">✨ Carnatic Vocal | Keyboard Classes | Free Bhagavad Gita Classes ✨</p>
                 <div class="hero-buttons">
                     <button onclick="showPage('booking')" class="btn-primary">Book a Ritual</button>
-                    <button onclick="showPage('services')" class="btn-secondary">View Services</button>
+                    <button onclick="showPage('music')" class="btn-music">Music Classes</button>
+                    <button onclick="showPage('gita')" class="btn-secondary">Free Gita Classes</button>
                 </div>
             </div>
         </section>
 
         <div class="container">
             <div class="cards-grid">
+                <div class="card special-card">
+                    <span class="auspicious-symbol">🎵</span>
+                    <i class="fas fa-music"></i>
+                    <h3>Carnatic Vocal</h3>
+                    <p>Professional Carnatic music training for all levels</p>
+                    <button onclick="showPage('music')" class="btn-primary" style="margin-top: 15px;">Learn More</button>
+                </div>
+                <div class="card special-card">
+                    <i class="fas fa-keyboard"></i>
+                    <h3>Keyboard Classes</h3>
+                    <p>Learn keyboard with classical and devotional music</p>
+                    <button onclick="showPage('music')" class="btn-primary" style="margin-top: 15px;">Learn More</button>
+                </div>
+                <div class="card free-class-card">
+                    <i class="fas fa-book"></i>
+                    <h3>📖 Free Bhagavad Gita</h3>
+                    <p>Weekly classes on Bhagavad Gita - Free for all</p>
+                    <button onclick="showPage('gita')" class="btn-primary" style="margin-top: 15px;">Join Free</button>
+                </div>
+            </div>
+
+            <div class="cards-grid">
                 <div class="card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Muhurat Timing</h3>
-                    <p>Auspecious timings for rituals</p>
-                    <button onclick="showPage('contact')" class="btn-primary" style="margin-top: 15px; padding: 8px 20px;">Check</button>
+                    <i class="fas fa-water"></i>
+                    <h3>Punyahavachanam</h3>
+                    <p>Purification ceremony for auspicious beginnings</p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Service Areas</h3>
-                    <p>Available for home visits across the city</p>
+                    <i class="fas fa-peace"></i>
+                    <h3>Vivida Shanti</h3>
+                    <p>Graha Shanti, Nakshatra Shanti, Dosha Nivaran</p>
                 </div>
                 <div class="card">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Call for emergency rituals</p>
-                    <a href="tel:+918328059590" class="btn-primary" style="display: inline-block; margin-top: 15px; padding: 8px 20px;">Call Now</a>
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Horoscope Reading</h3>
+                    <p>Janam Patri, Rashi Bhavishya, Graha Dosha</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-cow"></i>
+                    <h3>GauSeva</h3>
+                    <p>Gau Pooja, Gau Daan, Gau Seva Donations</p>
                 </div>
             </div>
         </div>
@@ -415,42 +723,113 @@
     <div id="servicesPage" class="hidden">
         <section class="hero" style="padding: 60px 0;">
             <div class="container">
-                <h1>Our Services</h1>
-                <p>Comprehensive Vedic rituals for all occasions</p>
+                <h1>🕉️ Our Services 卐</h1>
+                <p>Comprehensive Vedic rituals, Music Education & Spiritual Classes</p>
             </div>
         </section>
         <div class="container">
             <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-baby"></i>
-                    <h3>Samskaras</h3>
-                    <p>Namakaranam, Annaprasanam, Upanayanam</p>
+                <div class="card"><i class="fas fa-baby"></i><h3>Samskaras</h3><p>Namakaranam, Annaprasanam, Upanayanam</p></div>
+                <div class="card"><i class="fas fa-water"></i><h3>Punyahavachanam</h3><p>Purification ritual for auspicious beginnings</p></div>
+                <div class="card"><i class="fas fa-heart"></i><h3>Vivaha</h3><p>Traditional Hindu Wedding Ceremony</p></div>
+                <div class="card"><i class="fas fa-home"></i><h3>Gruha Pravesham</h3><p>House Warming & Vastu Shanti</p></div>
+                <div class="card"><i class="fas fa-pray"></i><h3>Regular Poojas</h3><p>Satyanarayana, Ganapati, Navagraha</p></div>
+                <div class="card"><i class="fas fa-peace"></i><h3>Vivida Shanti</h3><p>Graha Shanti, Nakshatra Shanti, Dosha Nivaran</p></div>
+                <div class="card"><i class="fas fa-music"></i><h3>Carnatic Vocal</h3><p>Professional Carnatic music training (Paid)</p></div>
+                <div class="card"><i class="fas fa-keyboard"></i><h3>Keyboard Classes</h3><p>Keyboard & Harmonium training (Paid)</p></div>
+                <div class="card free-class-card"><i class="fas fa-book-open"></i><h3>Bhagavad Gita</h3><p>Free weekly classes on Gita teachings</p></div>
+                <div class="card"><i class="fas fa-hand-holding-heart"></i><h3>Pitru Karyam</h3><p>Shraddha, Tarpanam, Ancestral Rituals</p></div>
+                <div class="card"><i class="fas fa-cow"></i><h3>GauSeva</h3><p>Gau Pooja, Gau Daan, Gau Aarti</p></div>
+                <div class="card"><i class="fas fa-chart-line"></i><h3>Horoscope</h3><p>Janam Patri, Rashi Reading, Remedies</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Classes Page -->
+    <div id="musicPage" class="hidden">
+        <section class="hero" style="padding: 60px 0;">
+            <div class="container">
+                <h1>🎵 श्री Carnatic Vocal & Keyboard Classes 卐</h1>
+                <p>Learn traditional music from experienced gurus | Both online & offline classes available</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="music-section">
+                <h2><i class="fas fa-music"></i> 🕉️ Music Education Programs</h2>
+                <p>Preserve and learn the rich tradition of Carnatic music and devotional keyboard</p>
+                <div class="music-grid">
+                    <div class="music-card">
+                        <i class="fas fa-microphone-alt" style="font-size: 3rem;"></i>
+                        <h3>Carnatic Vocal</h3>
+                        <p>Learn classical Carnatic music - Sarali varisai, Geethams, Varnams, Kritis</p>
+                        <div class="music-price">₹ 1,500 / month</div>
+                        <p>✅ Beginner to Advanced levels<br>✅ Individual attention<br>✅ Online & Offline</p>
+                        <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Enroll Now</button>
+                    </div>
+                    <div class="music-card">
+                        <i class="fas fa-keyboard" style="font-size: 3rem;"></i>
+                        <h3>Keyboard Classes</h3>
+                        <p>Learn keyboard with devotional songs, bhajans, and classical pieces</p>
+                        <div class="music-price">₹ 1,200 / month</div>
+                        <p>✅ Basic to Advanced<br>✅ Learn Bhajans & Kritis<br>✅ Flexible timings</p>
+                        <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Enroll Now</button>
+                    </div>
+                    <div class="music-card">
+                        <i class="fas fa-users" style="font-size: 3rem;"></i>
+                        <h3>Group Classes</h3>
+                        <p>Group learning for families and children</p>
+                        <div class="music-price">₹ 1,000 / month</div>
+                        <p>✅ Family discounts<br>✅ Weekend batches<br>✅ Performance opportunities</p>
+                        <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Join Group</button>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-heart"></i>
-                    <h3>Vivaha</h3>
-                    <p>Traditional Hindu Wedding Ceremony</p>
+                <div style="margin-top: 40px; text-align: center;">
+                    <p><i class="fas fa-phone"></i> For demo class contact: +91 83280 59590 | <i class="fab fa-whatsapp"></i> WhatsApp for trial</p>
+                    <a href="https://wa.me/918328059590?text=Hello,%20I%20am%20interested%20in%20music%20classes.%20Please%20share%20details." class="btn-secondary" style="margin-top: 15px; display: inline-block;">Book Free Demo</a>
                 </div>
-                <div class="card">
-                    <i class="fas fa-home"></i>
-                    <h3>Gruha Pravesham</h3>
-                    <p>House Warming & Vastu Shanti</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bhagavad Gita Page -->
+    <div id="gitaPage" class="hidden">
+        <section class="hero" style="padding: 60px 0;">
+            <div class="container">
+                <h1>📖 श्रीमद् भगवद् गीता 卐</h1>
+                <p>Free Weekly Classes - Understand the divine wisdom of Lord Krishna</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="gita-section">
+                <h2><i class="fas fa-book-open"></i> 🕉️ Free Bhagavad Gita Classes</h2>
+                <p>Join our weekly classes to understand the teachings of Lord Krishna. Open to all - No fees!</p>
+                
+                <div class="gita-schedule">
+                    <div class="schedule-item"><i class="fas fa-calendar-alt"></i> Sundays: 9:00 AM - 10:30 AM</div>
+                    <div class="schedule-item"><i class="fas fa-calendar-alt"></i> Wednesdays: 7:00 PM - 8:30 PM</div>
+                    <div class="schedule-item"><i class="fas fa-video"></i> Online via Zoom</div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-pray"></i>
-                    <h3>Regular Poojas</h3>
-                    <p>Satyanarayana, Ganapati, Navagraha</p>
+                
+                <div class="cards-grid" style="padding: 30px 0;">
+                    <div class="card">
+                        <i class="fas fa-chapter"></i>
+                        <h3>Chapter 1-6</h3>
+                        <p>Karma Yoga - Path of Action</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Chapter 7-12</h3>
+                        <p>Bhakti Yoga - Path of Devotion</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-brain"></i>
+                        <h3>Chapter 13-18</h3>
+                        <p>Jnana Yoga - Path of Knowledge</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-hand-holding-heart"></i>
-                    <h3>Pitru Karyam</h3>
-                    <p>Shraddha, Tarpanam, Ancestral Rituals</p>
-                </div>
-                <div class="card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Muhurat Consultation</h3>
-                    <p>Auspecious date and time selection</p>
-                </div>
+                
+                <a href="https://wa.me/918328059590?text=Hello,%20I%20want%20to%20join%20the%20free%20Bhagavad%20Gita%20classes." class="btn-primary" style="font-size: 1.2rem; padding: 15px 40px;">Join Free Classes on WhatsApp</a>
+                <p style="margin-top: 20px;"><i class="fas fa-download"></i> Previous class recordings available on request</p>
             </div>
         </div>
     </div>
@@ -459,47 +838,113 @@
     <div id="ritualsPage" class="hidden">
         <section class="hero" style="padding: 60px 0;">
             <div class="container">
-                <h1>Rituals & Ceremonies</h1>
+                <h1>🕉️ Rituals & Ceremonies 卐</h1>
                 <p>Detailed information about various Hindu rituals</p>
             </div>
         </section>
         <div class="container">
             <div class="cards-grid">
-                <div class="card">
-                    <i class="fas fa-baby-carriage"></i>
-                    <h3>Namakaranam</h3>
-                    <p>Naming ceremony on 11th, 12th, or 21st day after birth</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
+                <div class="card"><i class="fas fa-baby-carriage"></i><h3>Namakaranam</h3><p>Naming ceremony on 11th, 12th, or 21st day after birth</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-utensils"></i><h3>Annaprasanam</h3><p>First rice feeding ceremony at 6-8 months</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-water"></i><h3>Punyahavachanam</h3><p>Purification ceremony performed before any auspicious event</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-thread"></i><h3>Upanayanam</h3><p>Sacred thread ceremony for boys</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-ring"></i><h3>Vivaha</h3><p>Traditional wedding with all 7 pheras</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-home"></i><h3>Gruha Pravesham</h3><p>House warming ceremony with Vastu Shanti</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-peace"></i><h3>Vivida Shanti</h3><p>Graha Shanti, Nakshatra Shanti, Navagraha Shanti</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-cow"></i><h3>Gau Pooja</h3><p>Worship of cows, Gau Aarti, Gau Daan</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+                <div class="card"><i class="fas fa-moon"></i><h3>Satyanarayana Vratam</h3><p>Full moon day ritual for prosperity</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Horoscope Page -->
+    <div id="horoscopePage" class="hidden">
+        <section class="hero" style="padding: 60px 0;">
+            <div class="container">
+                <h1><i class="fas fa-chart-line"></i> 🕉️ Horoscope & Astrology 卐</h1>
+                <p>Janam Patri, Rashi Reading, Graha Dosha & Remedies</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="horoscope-container">
+                <div class="horoscope-info">
+                    <h3><i class="fas fa-star"></i> Select Your Rashi</h3>
+                    <div class="rashi-grid">
+                        <div class="rashi-item" onclick="showHoroscope('mesha')">♈ Mesha</div>
+                        <div class="rashi-item" onclick="showHoroscope('vrishabha')">♉ Vrishabha</div>
+                        <div class="rashi-item" onclick="showHoroscope('mithuna')">♊ Mithuna</div>
+                        <div class="rashi-item" onclick="showHoroscope('karka')">♋ Karka</div>
+                        <div class="rashi-item" onclick="showHoroscope('simha')">♌ Simha</div>
+                        <div class="rashi-item" onclick="showHoroscope('kanya')">♍ Kanya</div>
+                        <div class="rashi-item" onclick="showHoroscope('tula')">♎ Tula</div>
+                        <div class="rashi-item" onclick="showHoroscope('vrishchika')">♏ Vrishchika</div>
+                        <div class="rashi-item" onclick="showHoroscope('dhanu')">♐ Dhanu</div>
+                        <div class="rashi-item" onclick="showHoroscope('makara')">♑ Makara</div>
+                        <div class="rashi-item" onclick="showHoroscope('kumbha')">♒ Kumbha</div>
+                        <div class="rashi-item" onclick="showHoroscope('meena')">♓ Meena</div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <h4><i class="fas fa-calendar-alt"></i> Janam Patri Consultation</h4>
+                        <a href="https://wa.me/918328059590?text=Hello%2C%20I%20need%20Janam%20Patri%20consultation" class="btn-primary" style="display: inline-block; margin-top: 15px;">Consult Now</a>
+                    </div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Annaprasanam</h3>
-                    <p>First rice feeding ceremony at 6-8 months</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
+                <div class="horoscope-result" id="horoscopeResult">
+                    <h3><i class="fas fa-moon"></i> Today's Horoscope</h3>
+                    <p>Select your Rashi to view today's predictions</p>
+                    <hr style="margin: 20px 0;">
+                    <h4>🙏 Astrology Services:</h4>
+                    <ul><li>Graha Shanti Pooja</li><li>Navagraha Homam</li><li>Mangal Dosha Nivaran</li><li>Sade Sati Remedies</li></ul>
                 </div>
-                <div class="card">
-                    <i class="fas fa-thread"></i>
-                    <h3>Upanayanam</h3>
-                    <p>Sacred thread ceremony for boys</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GauSeva Page -->
+    <div id="gausevaPage" class="hidden">
+        <section class="hero" style="padding: 60px 0;">
+            <div class="container">
+                <h1><i class="fas fa-cow"></i> 🕉️ GauSeva - Service to Cows 卐</h1>
+                <p>गवां सेवा परम धर्मः | Service to cows is the highest virtue</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="gauseva-container">
+                <h2><i class="fas fa-heart"></i> Support GauSeva</h2>
+                <div class="donation-options">
+                    <div class="donation-card" onclick="donateAmount(51, 'Gau Aahar')"><i class="fas fa-apple-alt"></i><h3>Gau Aahar</h3><div class="donation-amount">₹ 51</div><button class="btn-primary">Donate</button></div>
+                    <div class="donation-card" onclick="donateAmount(1100, 'Gau Shelter')"><i class="fas fa-home"></i><h3>Gau Shelter</h3><div class="donation-amount">₹ 1,100</div><button class="btn-primary">Donate</button></div>
+                    <div class="donation-card" onclick="donateAmount(5100, 'Annual Gau Seva')"><i class="fas fa-hand-holding-heart"></i><h3>Annual Gau Seva</h3><div class="donation-amount">₹ 5,100</div><button class="btn-primary">Donate</button></div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-ring"></i>
-                    <h3>Vivaha</h3>
-                    <p>Traditional wedding with all 7 pheras</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Page -->
+    <div id="donationPage" class="hidden">
+        <section class="hero" style="padding: 60px 0;">
+            <div class="container">
+                <h1><i class="fas fa-hand-holding-heart"></i> 🕉️ Donations 卐</h1>
+                <p>Your generous support helps preserve Vedic traditions, music education, and temple activities</p>
+            </div>
+        </section>
+        <div class="container">
+            <div class="donation-section">
+                <h2><i class="fas fa-heart" style="color: #FFD700;"></i> Make a Donation</h2>
+                <div class="donation-options">
+                    <div class="donation-card" onclick="donateAmount(101, 'General Donation')"><i class="fas fa-seedling"></i><h3>General Donation</h3><div class="donation-amount">₹ 101</div><button class="btn-primary">Donate</button></div>
+                    <div class="donation-card" onclick="donateAmount(501, 'Annadanam')"><i class="fas fa-utensils"></i><h3>Annadanam</h3><div class="donation-amount">₹ 501</div><button class="btn-primary">Donate</button></div>
+                    <div class="donation-card" onclick="donateAmount(1001, 'Music Education')"><i class="fas fa-music"></i><h3>Music Education</h3><div class="donation-amount">₹ 1,001</div><button class="btn-primary">Donate</button></div>
+                    <div class="donation-card" onclick="donateAmount(5001, 'Temple Renovation')"><i class="fas fa-temple"></i><h3>Temple Renovation</h3><div class="donation-amount">₹ 5,001</div><button class="btn-primary">Donate</button></div>
                 </div>
-                <div class="card">
-                    <i class="fas fa-home"></i>
-                    <h3>Gruha Pravesham</h3>
-                    <p>House warming ceremony with Vastu Shanti</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
-                </div>
-                <div class="card">
-                    <i class="fas fa-moon"></i>
-                    <h3>Satyanarayana Vratam</h3>
-                    <p>Full moon day ritual for prosperity</p>
-                    <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 15px;">Book Now</button>
+                <div class="upi-container">
+                    <h3><i class="fas fa-qrcode"></i> Scan & Pay</h3>
+                    <div class="upi-id"><i class="fas fa-credit-card"></i> UPI ID: <strong>aryanvaruna@oksbi</strong></div>
+                    <button class="btn-primary" onclick="copyUPI()">Copy UPI ID</button>
+                    <div class="payment-apps">
+                        <a href="phonepe://pay?pa=aryanvaruna@oksbi&pn=Purohith%20Services" class="payment-app">PhonePe</a>
+                        <a href="gpay://pay?pa=aryanvaruna@oksbi&pn=Purohith%20Services" class="payment-app">Google Pay</a>
+                    </div>
+                    <a href="https://wa.me/918328059590?text=I%20have%20made%20a%20donation" class="btn-secondary">Confirm Payment</a>
                 </div>
             </div>
         </div>
@@ -509,68 +954,31 @@
     <div id="bookingPage" class="hidden">
         <section class="hero" style="padding: 60px 0;">
             <div class="container">
-                <h1>Book a Ritual</h1>
-                <p>Fill the form to schedule your ceremony</p>
+                <h1>🕉️ Book a Ritual or Class 卐</h1>
+                <p>Fill the form to schedule your ceremony, music class, or consultation</p>
             </div>
         </section>
         <div class="container">
             <div class="booking-container">
                 <div class="booking-info">
                     <h3><i class="fas fa-info-circle"></i> Booking Information</h3>
-                    <ul>
+                    <ul style="list-style: none; margin-top: 20px;">
                         <li><i class="fas fa-calendar-check"></i> Advance booking: 7-10 days</li>
-                        <li><i class="fas fa-clock"></i> Muhurat consultation included</li>
-                        <li><i class="fas fa-hand-holding-heart"></i> Dakshina as per your wish</li>
-                        <li><i class="fas fa-tools"></i> Samagri arrangement available</li>
-                        <li><i class="fas fa-phone"></i> Contact: +91 83280 59590</li>
-                        <li><i class="fas fa-phone"></i> Alternate: +91 94401 75900</li>
+                        <li><i class="fas fa-music"></i> Music classes: Monthly enrollment</li>
+                        <li><i class="fas fa-book"></i> Gita classes: Free - join anytime</li>
+                        <li><i class="fas fa-phone"></i> Contact: +91 83280 59590 / +91 94401 75900</li>
                         <li><i class="fas fa-envelope"></i> Email: aryanvaruna@gmail.com</li>
                     </ul>
                 </div>
                 <form id="bookingForm">
-                    <div class="form-group">
-                        <label>Full Name *</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" id="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label>Select Ritual *</label>
-                        <select id="ritual" required>
-                            <option value="">Choose a ritual</option>
-                            <option>Namakaranam (Naming Ceremony)</option>
-                            <option>Annaprasanam (First Feeding)</option>
-                            <option>Upanayanam (Sacred Thread)</option>
-                            <option>Traditional Wedding</option>
-                            <option>Gruha Pravesham (House Warming)</option>
-                            <option>Satyanarayana Vratam</option>
-                            <option>Ganapati Homam</option>
-                            <option>Navagraha Pooja</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Date *</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Preferred Time</label>
-                        <input type="time" id="time">
-                    </div>
-                    <div class="form-group">
-                        <label>Venue Address *</label>
-                        <textarea id="address" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Additional Details (Gotram, Nakshatram, etc.)</label>
-                        <textarea id="details" rows="2"></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Submit Booking Request</button>
+                    <div class="form-group"><label>Full Name *</label><input type="text" id="name" required></div>
+                    <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" required></div>
+                    <div class="form-group"><label>Email</label><input type="email" id="email"></div>
+                    <div class="form-group"><label>Select Service *</label><select id="ritual" required><option value="">Choose</option><option>Punyahavachanam</option><option>Vivida Shanti</option><option>Carnatic Vocal Classes</option><option>Keyboard Classes</option><option>Bhagavad Gita Classes (Free)</option><option>Namakaranam</option><option>Upanayanam</option><option>Traditional Wedding</option><option>Gruha Pravesham</option><option>Horoscope Consultation</option><option>Gau Pooja</option></select></div>
+                    <div class="form-group"><label>Preferred Date *</label><input type="date" id="date" required></div>
+                    <div class="form-group"><label>Address / Venue</label><textarea id="address" rows="2"></textarea></div>
+                    <div class="form-group"><label>Additional Details</label><textarea id="details" rows="2" placeholder="For music classes: preferred batch, experience level. For horoscope: birth details."></textarea></div>
+                    <button type="submit" class="btn-primary">Submit Request</button>
                 </form>
             </div>
         </div>
@@ -581,33 +989,16 @@
         <section class="hero" style="padding: 60px 0;">
             <div class="container">
                 <h1><i class="fas fa-chart-line"></i> Booking Dashboard</h1>
-                <p>Manage and view all your ritual bookings</p>
             </div>
         </section>
         <div class="container">
             <div class="dashboard-stats">
-                <div class="stat-card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3 id="totalBookings">0</h3>
-                    <p>Total Bookings</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock"></i>
-                    <h3 id="pendingBookings">0</h3>
-                    <p>Pending</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-users"></i>
-                    <h3 id="uniqueClients">0</h3>
-                    <p>Unique Clients</p>
-                </div>
+                <div class="stat-card"><i class="fas fa-calendar-check"></i><h3 id="totalBookings">0</h3><p>Total Bookings</p></div>
+                <div class="stat-card"><i class="fas fa-clock"></i><h3 id="pendingBookings">0</h3><p>Pending</p></div>
+                <div class="stat-card"><i class="fas fa-users"></i><h3 id="uniqueClients">0</h3><p>Unique Clients</p></div>
             </div>
-            <div style="text-align: center; margin-bottom: 20px;">
-                <button class="btn-primary" onclick="loadDashboard()">
-                    <i class="fas fa-sync-alt"></i> Refresh
-                </button>
-            </div>
-            <div id="bookingsList"></div>
+            <button class="btn-primary" onclick="loadDashboard()">Refresh</button>
+            <div id="bookingsList" style="margin-top: 20px;"></div>
         </div>
     </div>
 
@@ -615,59 +1006,25 @@
     <div id="contactPage" class="hidden">
         <section class="hero" style="padding: 60px 0;">
             <div class="container">
-                <h1>Contact Us</h1>
-                <p>Get in touch for rituals and ceremonies</p>
+                <h1>🕉️ Contact Us 卐</h1>
+                <p>Get in touch for rituals, classes, horoscope, and GauSeva</p>
             </div>
         </section>
         <div class="container">
             <div class="contact-container">
                 <div class="contact-info">
                     <h3><i class="fas fa-address-card"></i> Contact Details</h3>
-                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong><br>
-                    <a href="tel:+918328059590">+91 83280 59590</a><br>
-                    <a href="tel:+919440175900">+91 94401 75900</a></p>
-                    <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong><br>
-                    <a href="https://wa.me/918328059590">+91 83280 59590</a></p>
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong><br>
-                    <a href="mailto:aryanvaruna@gmail.com">aryanvaruna@gmail.com</a></p>
-                    <p><i class="fas fa-clock"></i> <strong>Business Hours:</strong><br>
-                    Monday - Sunday: 6:00 AM - 8:00 PM</p>
-                    <div class="social-links" style="margin-top: 30px;">
-                        <h4>Follow Us</h4>
-                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/918328059590" style="color: white; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-                    </div>
+                    <p><i class="fas fa-phone"></i> +91 83280 59590</p>
+                    <p><i class="fas fa-phone"></i> +91 94401 75900</p>
+                    <p><i class="fab fa-whatsapp"></i> +91 83280 59590</p>
+                    <p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 6:00 AM - 8:00 PM</p>
                 </div>
                 <form id="contactForm">
                     <h3>Send a Message</h3>
-                    <div class="form-group">
-                        <label>Your Name *</label>
-                        <input type="text" id="contactName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number *</label>
-                        <input type="tel" id="contactPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="contactEmail">
-                    </div>
-                    <div class="form-group">
-                        <label>Subject *</label>
-                        <select id="contactSubject" required>
-                            <option value="">Select a subject</option>
-                            <option>Ritual Booking</option>
-                            <option>Muhurat Consultation</option>
-                            <option>General Inquiry</option>
-                            <option>Emergency Ritual</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Message *</label>
-                        <textarea id="contactMessage" rows="4" required></textarea>
-                    </div>
+                    <div class="form-group"><label>Name *</label><input type="text" id="contactName" required></div>
+                    <div class="form-group"><label>Phone *</label><input type="tel" id="contactPhone" required></div>
+                    <div class="form-group"><label>Message *</label><textarea id="contactMessage" rows="4" required></textarea></div>
                     <button type="submit" class="btn-primary">Send Message</button>
                 </form>
             </div>
@@ -677,183 +1034,106 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Purohith Services</h3>
-                    <p>Preserving traditions through authentic Vedic rituals</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a onclick="showPage('home')">Home</a>
-                    <a onclick="showPage('services')">Services</a>
-                    <a onclick="showPage('rituals')">Rituals</a>
-                    <a onclick="showPage('booking')">Book Now</a>
-                    <a onclick="showPage('dashboard')">Dashboard</a>
-                    <a onclick="showPage('contact')">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-phone"></i> +91 83280 59590</p>
-                    <p><i class="fas fa-phone"></i> +91 94401 75900</p>
-                    <p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p>
-                </div>
+                <div class="footer-section"><h3>🕉️ Purohith Services 卐</h3><p>Preserving traditions through authentic Vedic rituals, music, and spiritual education</p></div>
+                <div class="footer-section"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('music')">Music Classes</a><a onclick="showPage('gita')">Free Gita Classes</a><a onclick="showPage('donation')">Donations</a></div>
+                <div class="footer-section"><h4>Contact</h4><p>+91 83280 59590</p><p>+91 94401 75900</p><p>aryanvaruna@gmail.com</p></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Purohith Services. All rights reserved.</p>
-            </div>
+            <div class="footer-bottom"><p>ॐ श्री गुरुभ्यो नमः 卐 | © 2024 Purohith Services</p></div>
         </div>
     </footer>
 
     <script>
         // Page Navigation
         function showPage(pageName) {
-            document.querySelectorAll('[id$="Page"]').forEach(page => {
-                page.classList.add('hidden');
-            });
+            document.querySelectorAll('[id$="Page"]').forEach(page => page.classList.add('hidden'));
             document.getElementById(pageName + 'Page').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({ top: 0 });
             if (pageName === 'dashboard') loadDashboard();
         }
 
-        // Mobile Menu
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '70px';
-                navLinks.style.left = '0';
-                navLinks.style.right = '0';
-                navLinks.style.background = '#8B4513';
-                navLinks.style.padding = '20px';
-                navLinks.style.gap = '15px';
-                navLinks.style.zIndex = '999';
-            }
+            if (navLinks.style.display === 'flex') navLinks.style.display = 'none';
+            else { navLinks.style.display = 'flex'; navLinks.style.flexDirection = 'column'; navLinks.style.position = 'absolute'; navLinks.style.top = '70px'; navLinks.style.left = '0'; navLinks.style.right = '0'; navLinks.style.background = '#8B4513'; navLinks.style.padding = '20px'; }
         }
 
         // Booking Form
-        const bookingForm = document.getElementById('bookingForm');
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const booking = {
-                    id: Date.now().toString(),
-                    name: document.getElementById('name').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    ritual: document.getElementById('ritual').value,
-                    eventDate: document.getElementById('date').value,
-                    eventTime: document.getElementById('time').value,
-                    address: document.getElementById('address').value,
-                    details: document.getElementById('details').value,
-                    status: 'pending',
-                    createdAt: new Date().toISOString()
-                };
-                
-                // Save to localStorage
-                let bookings = JSON.parse(localStorage.getItem('purohithBookings')) || [];
-                bookings.unshift(booking);
-                localStorage.setItem('purohithBookings', JSON.stringify(bookings));
-                
-                // Send WhatsApp
-                const message = `*🔔 NEW RITUAL BOOKING*%0A%0A*📿 Ritual:* ${booking.ritual}%0A*👤 Name:* ${booking.name}%0A*📞 Phone:* ${booking.phone}%0A*📅 Date:* ${booking.eventDate}%0A*📍 Address:* ${booking.address}`;
-                window.open(`https://wa.me/918328059590?text=${message}`, '_blank');
-                
-                alert('✓ Booking saved! WhatsApp notification sent to +91 83280 59590');
-                this.reset();
-                showPage('dashboard');
-            });
-        }
+        document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const booking = { id: Date.now().toString(), name: document.getElementById('name').value, phone: document.getElementById('phone').value, email: document.getElementById('email').value, ritual: document.getElementById('ritual').value, eventDate: document.getElementById('date').value, address: document.getElementById('address').value, details: document.getElementById('details').value, status: 'pending', createdAt: new Date().toISOString() };
+            let bookings = JSON.parse(localStorage.getItem('purohithBookings')) || [];
+            bookings.unshift(booking);
+            localStorage.setItem('purohithBookings', JSON.stringify(bookings));
+            const message = `*NEW BOOKING*%0A%0A*Service:* ${booking.ritual}%0A*Name:* ${booking.name}%0A*Phone:* ${booking.phone}%0A*Date:* ${booking.eventDate}`;
+            window.open(`https://wa.me/918328059590?text=${message}`, '_blank');
+            alert('✓ Booking saved! WhatsApp notification sent.');
+            this.reset();
+            showPage('dashboard');
+        });
 
         // Contact Form
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const name = document.getElementById('contactName').value;
-                const phone = document.getElementById('contactPhone').value;
-                const subject = document.getElementById('contactSubject').value;
-                const message = document.getElementById('contactMessage').value;
-                
-                const whatsappMsg = `*📧 Contact Message*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
-                window.open(`https://wa.me/918328059590?text=${whatsappMsg}`, '_blank');
-                
-                alert('✓ Message sent! We will contact you shortly.');
-                this.reset();
-            });
-        }
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value, phone = document.getElementById('contactPhone').value, message = document.getElementById('contactMessage').value;
+            window.open(`https://wa.me/918328059590?text=*Message from ${name}*%0A%0A${message}%0A%0ACall back: ${phone}`, '_blank');
+            alert('Message sent!');
+            this.reset();
+        });
 
-        // Dashboard Functions
+        // Dashboard
         function loadDashboard() {
             let bookings = JSON.parse(localStorage.getItem('purohithBookings')) || [];
-            
             document.getElementById('totalBookings').textContent = bookings.length;
             document.getElementById('pendingBookings').textContent = bookings.filter(b => b.status === 'pending').length;
             document.getElementById('uniqueClients').textContent = new Set(bookings.map(b => b.phone)).size;
-            
             const container = document.getElementById('bookingsList');
-            
-            if (bookings.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-calendar-alt" style="font-size: 4rem; margin-bottom: 20px;"></i>
-                        <h3>No Bookings Yet</h3>
-                        <p>When someone books a ritual through your website, it will appear here.</p>
-                        <button onclick="showPage('booking')" class="btn-primary" style="margin-top: 20px;">+ New Booking</button>
-                    </div>
-                `;
-                return;
-            }
-            
+            if (bookings.length === 0) { container.innerHTML = '<div class="empty-state"><h3>No Bookings Yet</h3></div>'; return; }
             let html = '';
-            for (let i = 0; i < bookings.length; i++) {
-                const b = bookings[i];
-                html += `
-                    <div class="booking-item">
-                        <h3>📿 ${b.ritual}</h3>
-                        <div class="booking-details">
-                            <p><strong>👤 Name:</strong> ${b.name}</p>
-                            <p><strong>📞 Phone:</strong> ${b.phone}</p>
-                            <p><strong>📧 Email:</strong> ${b.email || 'Not provided'}</p>
-                            <p><strong>📅 Event Date:</strong> ${b.eventDate}</p>
-                            <p><strong>📍 Address:</strong> ${b.address.substring(0, 50)}${b.address.length > 50 ? '...' : ''}</p>
-                            <p><strong>⏰ Booked on:</strong> ${new Date(b.createdAt).toLocaleString()}</p>
-                        </div>
-                        <a href="https://wa.me/${b.phone}?text=Hello%20${encodeURIComponent(b.name)}%2C%20Thank%20you%20for%20booking%20${encodeURIComponent(b.ritual)}%20with%20Purohith%20Services.%20We%20will%20contact%20you%20shortly.%20🙏" class="whatsapp-link" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Contact Client
-                        </a>
-                        <button class="delete-btn" onclick="deleteBooking('${b.id}')">
-                            <i class="fas fa-trash"></i> Delete
-                        </button>
-                    </div>
-                `;
-            }
+            bookings.forEach(b => { html += `<div class="booking-item"><h3>📿 ${b.ritual}</h3><div class="booking-details"><p><strong>Name:</strong> ${b.name}</p><p><strong>Phone:</strong> ${b.phone}</p><p><strong>Date:</strong> ${b.eventDate}</p></div><a href="https://wa.me/${b.phone}?text=Hello%20${b.name},%20Your%20${b.ritual}%20booking%20confirmed!" class="whatsapp-link">WhatsApp</a><button class="delete-btn" onclick="deleteBooking(\'${b.id}\')">Delete</button></div>`; });
             container.innerHTML = html;
         }
 
         function deleteBooking(id) {
-            if (confirm('Are you sure you want to delete this booking?')) {
+            if (confirm('Delete this booking?')) {
                 let bookings = JSON.parse(localStorage.getItem('purohithBookings')) || [];
                 bookings = bookings.filter(b => b.id !== id);
                 localStorage.setItem('purohithBookings', JSON.stringify(bookings));
                 loadDashboard();
-                alert('Booking deleted!');
             }
         }
 
-        // Set minimum date for booking (today + 7 days)
-        const dateInput = document.getElementById('date');
-        if (dateInput) {
-            const minDate = new Date();
-            minDate.setDate(minDate.getDate() + 7);
-            dateInput.min = minDate.toISOString().split('T')[0];
+        function donateAmount(amount, purpose) {
+            window.open(`https://wa.me/918328059590?text=I%20want%20to%20donate%20₹${amount}%20for%20${purpose}%20via%20UPI%20aryanvaruna@oksbi`, '_blank');
         }
 
-        // Show home page by default
+        function copyUPI() {
+            navigator.clipboard.writeText('aryanvaruna@oksbi');
+            alert('UPI ID copied: aryanvaruna@oksbi');
+        }
+
+        function showHoroscope(rashi) {
+            const result = document.getElementById('horoscopeResult');
+            const horoscopes = {
+                mesha: "♈ Mesha: Today is favorable for new beginnings. Lord Ganesha blessings. Auspicious color: Red.",
+                vrishabha: "♉ Vrishabha: Financial gains indicated. Perform Vishnu Sahasranama for peace.",
+                mithuna: "♊ Mithuna: Good communication today. Light a lamp for Mercury.",
+                karka: "♋ Karka: Family harmony. Offer milk to Shiva Lingam.",
+                simha: "♌ Simha: Leadership opportunities. Donate yellow clothes for blessings.",
+                kanya: "♍ Kanya: Health improves. Chant Aditya Hridayam.",
+                tula: "♎ Tula: Partnerships favorable. Offer white flowers to Lakshmi.",
+                vrishchika: "♏ Vrishchika: Spiritual growth. Perform Rudrabhishekam.",
+                dhanu: "♐ Dhanu: Travel opportunities. Recite Vishnu Sahasranama.",
+                makara: "♑ Makara: Career progress. Donate black sesame seeds.",
+                kumbha: "♒ Kumbha: Social recognition. Offer water to Sun God.",
+                meena: "♓ Meena: Creative pursuits. Chant Mahamrityunjaya mantra."
+            };
+            result.innerHTML = `<h3>🌟 ${horoscopes[rashi] || 'Select your Rashi'}</h3><p style="margin-top:15px;">🙏 Recommended Remedy: Contact for personalized pooja consultation.</p><button onclick="showPage('booking')" class="btn-primary">Book Consultation</button>`;
+        }
+
+        // Set minimum date
+        const dateInput = document.getElementById('date');
+        if (dateInput) { const minDate = new Date(); minDate.setDate(minDate.getDate() + 7); dateInput.min = minDate.toISOString().split('T')[0]; }
+
         showPage('home');
     </script>
 </body>

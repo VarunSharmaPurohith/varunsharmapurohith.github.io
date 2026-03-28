@@ -163,7 +163,6 @@
             bottom: -50px;
             right: -50px;
             font-family: serif;
-            animation: rotateSlow 20s linear infinite;
         }
 
         .hero::after {
@@ -173,12 +172,6 @@
             opacity: 0.05;
             top: -50px;
             left: -50px;
-            animation: rotateSlow 15s linear infinite reverse;
-        }
-
-        @keyframes rotateSlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .hero-content {
@@ -214,7 +207,7 @@
             animation: fadeInUp 1s ease 0.4s both;
         }
 
-        /* Buttons with Hover Effects */
+        /* Buttons */
         .btn-primary, .btn-secondary, .btn-donate, .btn-music {
             padding: 12px 30px;
             border: none;
@@ -281,7 +274,7 @@
             color: white;
         }
 
-        /* Cards Grid with Stagger Animation */
+        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -355,7 +348,6 @@
             font-size: 1.5rem;
         }
 
-        /* Special Cards */
         .special-card {
             background: linear-gradient(135deg, #fff5ed, #fff);
             border: 2px solid #FFD700;
@@ -468,7 +460,6 @@
             opacity: 0.1;
             top: -50px;
             left: -50px;
-            animation: rotateSlow 20s linear infinite;
         }
 
         .gita-schedule {
@@ -640,6 +631,29 @@
             color: white;
         }
 
+        .booking-info ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .booking-info li {
+            margin-bottom: 15px;
+        }
+
+        .booking-info i {
+            margin-right: 10px;
+            width: 25px;
+        }
+
+        .booking-info a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .booking-info a:hover {
+            text-decoration: underline;
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -693,7 +707,6 @@
         .stat-card h3 {
             font-size: 2.5rem;
             margin: 10px 0;
-            animation: countUp 0.5s ease;
         }
 
         .booking-item {
@@ -717,6 +730,32 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .whatsapp-link {
+            background: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         /* Contact Section */
         .contact-container {
             display: grid;
@@ -736,6 +775,33 @@
 
         .contact-info:hover {
             transform: translateY(-5px);
+        }
+
+        .contact-info p {
+            margin: 15px 0;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            width: 25px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            color: #FFD700;
+        }
+
+        .social-links a {
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: #FFD700 !important;
         }
 
         /* Footer */
@@ -776,11 +842,21 @@
             text-decoration: none;
             margin-bottom: 12px;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .footer-section a:hover {
             color: #FFD700;
             transform: translateX(5px);
+        }
+
+        .footer-section p {
+            margin: 10px 0;
+        }
+
+        .footer-section i {
+            margin-right: 8px;
+            width: 25px;
         }
 
         .footer-bottom {
@@ -872,10 +948,10 @@
         <div class="container">
             <div class="nav-content">
                 <div class="logo">
-                    <span class="auspicious-symbol">🕉️</span>
+                    <span>🕉️</span>
                     <i class="fas fa-om"></i>
                     <h2>Purohith Services</h2>
-                    <span class="swastika">卐</span>
+                    <span>卐</span>
                 </div>
                 <ul class="nav-links">
                     <li><a onclick="showPage('home')">Home</a></li>
@@ -1188,12 +1264,13 @@
             <div class="booking-container">
                 <div class="booking-info">
                     <h3><i class="fas fa-info-circle"></i> Booking Information</h3>
-                    <ul style="list-style: none; margin-top: 20px;">
+                    <ul>
                         <li><i class="fas fa-calendar-check"></i> Advance booking: 7-10 days</li>
                         <li><i class="fas fa-music"></i> Music classes: Monthly enrollment</li>
                         <li><i class="fas fa-book"></i> Gita classes: Free - join anytime</li>
                         <li><i class="fas fa-phone"></i> Contact: +91 83280 59590 / +91 94401 75900</li>
                         <li><i class="fas fa-envelope"></i> Email: aryanvaruna@gmail.com</li>
+                        <li><i class="fab fa-instagram"></i> Instagram: <a href="https://instagram.com/aryanvaruna" target="_blank">@aryanvaruna</a></li>
                     </ul>
                 </div>
                 <form id="bookingForm">
@@ -1246,12 +1323,13 @@
                     <p><i class="fas fa-phone"></i> +91 94401 75900</p>
                     <p><i class="fab fa-whatsapp"></i> +91 83280 59590</p>
                     <p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/aryanvaruna" target="_blank">@aryanvaruna</a></p>
                     <p><i class="fas fa-clock"></i> Mon-Sun: 6:00 AM - 8:00 PM</p>
                     <div class="social-links" style="margin-top: 30px;">
-                        <a href="https://wa.me/918328059590" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
-                        <a href="#" style="color: white; margin-right: 15px; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                        <a href="#" style="color: white; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/918328059590" target="_blank" style="color: white; margin-right: 20px; font-size: 1.8rem;"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/aryanvaruna" target="_blank" style="color: white; margin-right: 20px; font-size: 1.8rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/15R3NoDEgA/" target="_blank" style="color: white; margin-right: 20px; font-size: 1.8rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank" style="color: white; font-size: 1.8rem;"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <form id="contactForm">
@@ -1268,11 +1346,32 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section"><h3>🕉️ Purohith Services 卐</h3><p>Preserving traditions through authentic Vedic rituals, music, and spiritual education</p></div>
-                <div class="footer-section"><h4>Quick Links</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('music')">Music Classes</a><a onclick="showPage('gita')">Free Gita Classes</a><a onclick="showPage('donation')">Donations</a></div>
-                <div class="footer-section"><h4>Contact</h4><p>+91 83280 59590</p><p>+91 94401 75900</p><p>aryanvaruna@gmail.com</p></div>
+                <div class="footer-section">
+                    <h3>🕉️ Purohith Services 卐</h3>
+                    <p>Preserving traditions through authentic Vedic rituals, music, and spiritual education</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a onclick="showPage('home')">Home</a>
+                    <a onclick="showPage('music')">Music Classes</a>
+                    <a onclick="showPage('gita')">Free Gita Classes</a>
+                    <a onclick="showPage('donation')">Donations</a>
+                    <a onclick="showPage('horoscope')">Horoscope</a>
+                    <a onclick="showPage('gauseva')">GauSeva</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> +91 83280 59590</p>
+                    <p><i class="fas fa-phone"></i> +91 94401 75900</p>
+                    <p><i class="fab fa-whatsapp"></i> +91 83280 59590</p>
+                    <p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/aryanvaruna" target="_blank" style="color: #FFD700;">@aryanvaruna</a></p>
+                </div>
             </div>
-            <div class="footer-bottom"><p>ॐ श्री गुरुभ्यो नमः 卐 | © 2024 Purohith Services</p></div>
+            <div class="footer-bottom">
+                <p>ॐ श्री गुरुभ्यो नमः 卐 | © 2024 Purohith Services</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Follow us on Instagram: <a href="https://instagram.com/aryanvaruna" target="_blank" style="color: #FFD700;">@aryanvaruna</a></p>
+            </div>
         </div>
     </footer>
 

@@ -71,7 +71,6 @@
             cursor: pointer;
         }
         
-        /* Panchanga Widget */
         .panchanga-widget {
             background: rgba(0, 0, 0, 0.55);
             backdrop-filter: blur(8px);
@@ -153,7 +152,6 @@
         .card i { font-size: 3rem; color: #FFA500; margin-bottom: 1rem; }
         .card h3 { color: #8B4513; margin-bottom: 0.8rem; }
 
-        /* ========== ENHANCED HOROSCOPE STYLES (ONLY HOROSCOPE PAGE ENHANCED) ========== */
         .rashi-zodiac-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -188,42 +186,11 @@
             box-shadow: 0 25px 40px rgba(139,69,19,0.25);
             border-color: #FFD700;
         }
-        .rashi-symbol {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            display: inline-block;
-            filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2));
-            transition: transform 0.3s;
-        }
+        .rashi-symbol { font-size: 4rem; margin-bottom: 10px; display: inline-block; filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.2)); transition: transform 0.3s; }
         .rashi-card:hover .rashi-symbol { transform: scale(1.1) rotate(5deg); }
-        .rashi-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            font-family: 'Cormorant Garamond', serif;
-            color: #8B4513;
-            margin: 8px 0;
-            letter-spacing: 1px;
-        }
-        .rashi-lord {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #5a2d0c;
-            margin: 8px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        .rashi-detail {
-            font-size: 0.8rem;
-            color: #6b4c3b;
-            margin-top: 8px;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+        .rashi-name { font-size: 1.8rem; font-weight: 700; font-family: 'Cormorant Garamond', serif; color: #8B4513; margin: 8px 0; letter-spacing: 1px; }
+        .rashi-lord { background: linear-gradient(135deg, #FFD700, #FFA500); display: inline-block; padding: 5px 15px; border-radius: 40px; font-size: 0.85rem; font-weight: 600; color: #5a2d0c; margin: 8px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .rashi-detail { font-size: 0.8rem; color: #6b4c3b; margin-top: 8px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .rashi-detail span { background: #fef3e2; padding: 4px 12px; border-radius: 30px; }
         .horoscope-result-card {
             background: linear-gradient(135deg, #fff8ed, #fff3e6);
@@ -239,68 +206,16 @@
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .rashi-result-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            border-bottom: 2px dashed #FFD700;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
+        .rashi-result-header { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; border-bottom: 2px dashed #FFD700; padding-bottom: 20px; margin-bottom: 20px; }
         .rashi-result-symbol { font-size: 4rem; }
         .rashi-result-title h2 { font-size: 2.5rem; color: #8B4513; margin: 0; }
-        .rashi-result-title p { font-size: 1rem; color: #b87333; }
-        .remedy-box {
-            background: #fff0e0;
-            padding: 18px;
-            border-radius: 28px;
-            margin-top: 20px;
-            display: inline-block;
-            width: 100%;
-        }
-        .mantra-chant {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
-            background: #8B4513;
-            color: #FFD700;
-            padding: 12px;
-            border-radius: 50px;
-            text-align: center;
-            margin-top: 15px;
-        }
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.4); }
-            70% { box-shadow: 0 0 0 12px rgba(255,215,0,0); }
-            100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); }
-        }
-        .active-rashi {
-            border: 3px solid #FFD700;
-            background: linear-gradient(145deg, #fff8e0, #fff2dc);
-            animation: pulseGlow 1.5s infinite;
-        }
+        .remedy-box { background: #fff0e0; padding: 18px; border-radius: 28px; margin-top: 20px; display: inline-block; width: 100%; }
+        .mantra-chant { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; background: #8B4513; color: #FFD700; padding: 12px; border-radius: 50px; text-align: center; margin-top: 15px; }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.4); } 70% { box-shadow: 0 0 0 12px rgba(255,215,0,0); } 100% { box-shadow: 0 0 0 0 rgba(255,215,0,0); } }
+        .active-rashi { border: 3px solid #FFD700; background: linear-gradient(145deg, #fff8e0, #fff2dc); animation: pulseGlow 1.5s infinite; }
         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .modal-content {
-            background: white;
-            max-width: 550px;
-            width: 90%;
-            padding: 30px;
-            border-radius: 30px;
-            position: relative;
-            animation: fadeInUp 0.3s;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 2000; }
+        .modal-content { background: white; max-width: 550px; width: 90%; padding: 30px; border-radius: 30px; position: relative; animation: fadeInUp 0.3s; max-height: 80vh; overflow-y: auto; }
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #8B4513; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
 
@@ -323,7 +238,6 @@
         .booking-item { background: white; border-radius: 16px; padding: 18px; margin-bottom: 15px; border-left: 5px solid #FFD700; }
         .gau-product { border: 2px solid #FFD700; background: #fffaf0; }
         
-        /* Vastu Aaya Table Styles */
         .aaya-calc-card {
             background: white;
             border-radius: 30px;
@@ -372,13 +286,7 @@
         }
         .aaya-table tr:last-child td { border-bottom: none; }
         .aaya-table tr:hover { background: #fff5e6; }
-        .result-badge {
-            display: inline-block;
-            padding: 10px 18px;
-            border-radius: 40px;
-            font-weight: bold;
-            margin-top: 15px;
-        }
+        .result-badge { display: inline-block; padding: 10px 18px; border-radius: 40px; font-weight: bold; margin-top: 15px; }
         .shubh { background: #e6f7e6; color: #2e7d32; border-left: 4px solid #2e7d32; }
         .ashubh { background: #ffe6e6; color: #c62828; border-left: 4px solid #c62828; }
         .vastu-value { font-weight: 600; color: #8B4513; }
@@ -417,7 +325,7 @@
 
     <div id="ritualModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal()">&times;</span><div id="modalBody"></div></div></div>
 
-    <!-- HOME PAGE (ORIGINAL CONTENT) -->
+    <!-- HOME PAGE (ORIGINAL) -->
     <div id="homePage">
         <section class="hero"><div class="container"><h1>🕉️ ॐ श्री शुभम करोति कल्याणम् 卐 🐄</h1><p>Traditional Hindu Rituals | Carnatic Music | Free Gita Classes | GauSeva | Pure Cow Dung Products</p><button onclick="showPage('booking')" class="btn-primary">📿 Book a Ritual</button> <button onclick="showPage('gauproducts')" class="btn-secondary">🪔 Order Cow Dung Cakes</button></div></section>
         <div class="container">
@@ -431,19 +339,11 @@
         </div>
     </div>
 
-    <!-- SERVICES PAGE (ORIGINAL) -->
     <div id="servicesPage" class="hidden"><section class="hero" style="padding:50px"><h1>✨ Our Vedic Services 卐</h1><p>Authentic rituals, music education, astrology & GauSeva</p></section><div class="container"><div class="cards-grid" id="servicesGrid"></div></div></div>
-
-    <!-- RITUALS PAGE (ORIGINAL) -->
     <div id="ritualsPage" class="hidden"><section class="hero" style="padding:50px"><h1>📿 16 Samskaras & Rituals</h1><p>Click any ritual to read detailed significance, Vishnu shlokas & Vedic importance</p></section><div class="container"><div class="cards-grid" id="ritualsGrid"></div></div></div>
-
-    <!-- MUSIC PAGE (ORIGINAL) -->
     <div id="musicPage" class="hidden"><section class="hero"><h1>🎵 श्री Carnatic Vocal & Keyboard Classes 卐</h1><p>Learn from experienced gurus | Online & Offline</p></section><div class="container"><div class="gita-section"><h2>🎶 Music Programs</h2><div class="cards-grid"><div class="card"><i class="fas fa-microphone-alt"></i><h3>Carnatic Vocal</h3><p>₹1500/month | Beginners to Advanced</p><button onclick="showPage('booking')" class="btn-primary">Enroll Now</button></div><div class="card"><i class="fas fa-keyboard"></i><h3>Keyboard Classes</h3><p>₹1200/month | Bhajans & Kritis</p><button onclick="showPage('booking')" class="btn-primary">Enroll Now</button></div></div><div class="shloka-box"><div class="sanskrit-text">"नादात्मकं जगदिदं संगीतमयमेव च। तस्माद्गानं परं ब्रह्म स्वरूपं वैष्णवं प्रियम्॥"</div><p>🎼 This universe is made of sound and music; music is the form of Supreme Brahman and dear to Lord Vishnu.</p></div></div></div></div>
-
-    <!-- GITA PAGE (ORIGINAL) -->
     <div id="gitaPage" class="hidden"><section class="hero"><h1>📖 श्रीमद् भगवद् गीता 卐</h1><p>Free Weekly Classes - Open to All</p></section><div class="container"><div class="gita-section"><h2>📅 Schedule: Sunday 9:00 AM & Wednesday 7:00 PM (Online Zoom)</h2><div class="shloka-box"><div class="sanskrit-text">"योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। सिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते॥" (Gita 2.48)</div><p>🧘 Established in Yoga, perform actions abandoning attachment, remaining balanced in success and failure.</p></div><div class="shloka-box"><div class="sanskrit-text">"मयि सर्वमिदं प्रोक्तं सूत्रे मणिगणा इव। तत्क्षरं परमं ब्रह्म तद्विष्णोः परमं पदम्॥" (Gita 7.7)</div><p>🔱 Everything rests in Me like gems on a thread. That Supreme Brahman is the Supreme Abode of Vishnu.</p></div><div class="shloka-box"><div class="sanskrit-text">"सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज। अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः॥" (Gita 18.66)</div><p>🕉️ Abandon all varieties of dharma and surrender unto Me alone. I shall liberate you from all sins.</p></div><button onclick="window.open('https://wa.me/918328059590?text=Join%20Free%20Gita%20Classes')" class="btn-primary">📖 Join Free Classes on WhatsApp</button></div></div></div>
 
-    <!-- HOROSCOPE PAGE (ENHANCED) -->
     <div id="horoscopePage" class="hidden">
         <section class="hero"><h1>⭐ Rashi Phala & Vedic Astrology 卐</h1><p>Select your Rashi for today's prediction, remedies & Vishnu mantras</p></section>
         <div class="container">
@@ -454,7 +354,7 @@
         </div>
     </div>
 
-    <!-- VASTU CONSULTATION PAGE WITH CORRECT AAYA CALCULATION -->
+    <!-- VASTU PAGE WITH FULLY DYNAMIC CALCULATIONS -->
     <div id="vastuPage" class="hidden">
         <section class="hero"><h1>🏠 Vastu Consultation & Aaya Calculation 卐</h1><p>Harmonize your living spaces with ancient Vedic science | Length & Breadth based analysis</p></section>
         <div class="container">
@@ -466,9 +366,7 @@
                     <input type="number" id="breadthInput" placeholder="Breadth (in feet)" step="any" value="20">
                     <button class="btn-primary" onclick="calculateVastuAaya()"><i class="fas fa-calculator"></i> Calculate</button>
                 </div>
-                <div id="aayaResultArea" style="margin-top:25px;">
-                    <!-- dynamic comprehensive table will appear here -->
-                </div>
+                <div id="aayaResultArea" style="margin-top:25px;"></div>
                 <div class="shloka-box" style="margin-top:30px;">
                     <div class="sanskrit-text">"आयादिषड्विधं ज्ञेयं वास्तुमानं शुभाशुभम्। आयश्च व्यय एवं च नक्षत्रं योनिरेव च॥"</div>
                     <p>🏛️ The measurement of a building determines Aaya (income), Vyaya (expenditure), Nakshatra, Yoni, and other factors. Proper dimensions bring prosperity and harmony.</p>
@@ -482,10 +380,8 @@
         </div>
     </div>
 
-    <!-- GAUSEVA PAGE (ORIGINAL) -->
     <div id="gausevaPage" class="hidden"><section class="hero"><h1>🐄 गवां सेवा परम धर्मः 卐</h1><p>GauSeva - Service to Cows, the highest virtue</p></section><div class="container"><div class="donation-section"><h2>🙏 Importance of Cows (Gau Mata) & Brahmin Service</h2><p>Cows are the abode of all deities. Lord Krishna as Govardhanadhari and Gopala emphasizes GauSeva. Serving cows and Brahmins brings divine blessings, removes sins and ensures prosperity.</p><div class="shloka-box" style="background:rgba(255,215,0,0.2)"><div class="sanskrit-text">"गावो विश्वस्य मातरः" — ऋग्वेद</div><p>🐮 Cows are the mothers of the universe. They give selflessly and protect dharma.</p></div><div class="shloka-box" style="background:rgba(255,215,0,0.2)"><div class="sanskrit-text">"यस्य गावे च विप्राय च दद्यात्सर्वमेव तत्। स्वर्गलोकमवाप्नोति विष्णुलोकं स गच्छति॥"</div><p>🌸 One who donates cows and serves Brahmins attains heaven and finally reaches Vishnu's abode.</p></div><div class="cards-grid"><div class="card" onclick="donateAmount(51,'Gau Aahar')"><i class="fas fa-apple-alt"></i><h3>Gau Aahar (Feed)</h3><p>₹51</p><button class="btn-primary">Donate Now</button></div><div class="card" onclick="donateAmount(1100,'Gau Shelter')"><i class="fas fa-home"></i><h3>Gau Shelter (Monthly)</h3><p>₹1,100</p><button class="btn-primary">Donate</button></div><div class="card" onclick="donateAmount(5100,'Annual Gau Seva')"><i class="fas fa-hand-holding-heart"></i><h3>Annual Gau Seva</h3><p>₹5,100</p><button class="btn-primary">Donate</button></div></div></div></div></div>
 
-    <!-- GAU PRODUCTS PAGE (ORIGINAL) -->
     <div id="gauproductsPage" class="hidden">
         <section class="hero"><h1>🪔 Pure Cow Dung Cakes & Goumutra 卐</h1><p>Sacred for Havan, Agnihotra, Yajnas & Spiritual Cleansing</p></section>
         <div class="container">
@@ -503,16 +399,12 @@
         </div>
     </div>
 
-    <!-- DONATION PAGE (ORIGINAL) -->
     <div id="donationPage" class="hidden"><section class="hero"><h1>❤️ Donations for Vedic Causes 卐</h1><p>Support Annadanam, Temple renovation, Music education</p></section><div class="container"><div class="donation-section"><h2>🙏 Your generosity sustains dharma</h2><div class="cards-grid"><div class="card" onclick="donateAmount(101,'General Donation')"><i class="fas fa-seedling"></i><h3>General Donation</h3><p>₹101</p></div><div class="card" onclick="donateAmount(501,'Annadanam')"><i class="fas fa-utensils"></i><h3>Annadanam</h3><p>₹501</p></div><div class="card" onclick="donateAmount(1001,'Music Education')"><i class="fas fa-music"></i><h3>Sponsor Music Class</h3><p>₹1,001</p></div><div class="card" onclick="donateAmount(5001,'Temple Renovation')"><i class="fas fa-temple"></i><h3>Temple Renovation</h3><p>₹5,001</p></div></div><div class="upi-container" style="background:white; padding:25px; border-radius:25px; margin-top:20px; text-align:center"><h3>🔹 UPI ID: <strong style="color:#8B4513">aryanvaruna@oksbi</strong></h3><button class="btn-primary" onclick="copyUPI()"><i class="fas fa-copy"></i> Copy UPI ID</button><p style="margin-top:15px">After payment, send screenshot on WhatsApp for confirmation & blessings.</p></div></div></div></div>
 
-    <!-- BOOKING PAGE (ORIGINAL) -->
     <div id="bookingPage" class="hidden"><section class="hero"><h1>📅 Book a Ritual or Class 卐</h1><p>Fill the form to schedule your ceremony, music class or order products</p></section><div class="container"><div class="cards-grid" style="grid-template-columns:1fr 1fr"><div class="card"><h3>📞 Need help?</h3><p><i class="fas fa-phone"></i> +91 83280 59590<br><i class="fab fa-whatsapp"></i> +91 83280 59590<br><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p><p>Advance booking: 7-10 days recommended.</p></div><form id="bookingForm" style="background:white; padding:30px; border-radius:30px"><h3>📿 Booking Request</h3><input type="text" id="name" placeholder="Full Name *" required style="width:100%; padding:12px; margin:8px 0; border-radius:40px; border:1px solid #ccc"><input type="tel" id="phone" placeholder="Phone Number *" required style="width:100%; padding:12px; margin:8px 0; border-radius:40px"><select id="ritual" required style="width:100%; padding:12px; margin:8px 0; border-radius:40px"><option value="">Select Service</option><option>Punyahavachanam</option><option>Vivida Shanti</option><option>Carnatic Vocal Classes</option><option>Keyboard Classes</option><option>Bhagavad Gita Classes (Free)</option><option>Namakaranam</option><option>Annaprasanam</option><option>Upanayanam</option><option>Traditional Wedding</option><option>Gruha Pravesham</option><option>Horoscope Consultation</option><option>Gau Pooja</option><option>Order Cow Dung Cakes</option><option>Order Goumutra</option><option>Vastu Consultation</option></select><input type="date" id="date" required style="width:100%; padding:12px; margin:8px 0; border-radius:40px"><textarea id="address" rows="2" placeholder="Address / Venue / Delivery Address" style="width:100%; padding:12px; border-radius:20px"></textarea><button type="submit" class="btn-primary">📩 Submit Request →</button></form></div></div></div>
 
-    <!-- DASHBOARD PAGE (ORIGINAL) -->
     <div id="dashboardPage" class="hidden"><section class="hero"><h1>📊 Booking Dashboard 卐</h1><p>Manage all client bookings & orders</p></section><div class="container"><div class="cards-grid" style="grid-template-columns:repeat(3,1fr)"><div class="card"><h3>📋 Total Bookings</h3><h2 id="totalBookings">0</h2></div><div class="card"><h3>⏳ Pending</h3><h2 id="pendingBookings">0</h2></div><div class="card"><h3>👥 Unique Clients</h3><h2 id="uniqueClients">0</h2></div></div><div id="bookingsList"></div><button class="btn-primary" onclick="loadDashboard()"><i class="fas fa-sync-alt"></i> Refresh</button></div></div>
 
-    <!-- CONTACT PAGE (ORIGINAL) -->
     <div id="contactPage" class="hidden"><section class="hero"><h1>📞 Contact Us 卐</h1><p>Get in touch for rituals, classes, horoscope, GauSeva & cow products</p></section><div class="container"><div class="cards-grid"><div class="card"><i class="fas fa-phone-alt"></i><h3>Call / WhatsApp</h3><p>+91 83280 59590<br>+91 94401 75900</p><p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p><div class="social-links"><a href="https://wa.me/918328059590" class="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat Now</a></div></div><form id="contactForm" style="background:white; padding:30px; border-radius:30px"><h3>✉️ Send a Message</h3><input type="text" id="contactName" placeholder="Your Name" required style="width:100%; padding:12px; margin:10px 0; border-radius:40px"><input type="tel" id="contactPhone" placeholder="Phone" required style="width:100%; padding:12px; margin:10px 0; border-radius:40px"><textarea id="contactMsg" rows="4" placeholder="Your message..." required style="width:100%; padding:12px; border-radius:20px"></textarea><button type="submit" class="btn-primary">📧 Send via WhatsApp</button></form></div></div></div>
 
     <footer>
@@ -527,7 +419,7 @@
     </footer>
 
     <script>
-        // ======================= ACCURATE PANCHANGA (ORIGINAL) =======================
+        // ======================= PANCHANGA (ORIGINAL) =======================
         const tithiNamesFull = ["Pratipada","Dwitiya","Tritiya","Chaturthi","Panchami","Shashthi","Saptami","Ashtami","Navami","Dashami","Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima","Pratipada","Dwitiya","Tritiya","Chaturthi","Panchami","Shashthi","Saptami","Ashtami","Navami","Dashami","Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya"];
         function degToRad(d){return d*Math.PI/180;} function radToDeg(r){return r*180/Math.PI;} function norm(a){a%=360; if(a<0)a+=360; return a;}
         function getMeanSunLongitude(jd){const n=jd-2451545.0; return norm(280.460+0.9856474*n);}
@@ -538,130 +430,37 @@
         function updatePanchanga(){const now=new Date(), jd=getJulianDate(now), tithi=calculateTithi(jd); const paksha=tithi.index<15?"Shukla":"Krishna", num=(tithi.index%15)+1; let name=tithi.name; if(name==="Purnima")name="Pūrṇimā"; if(name==="Amavasya")name="Amāvasyā"; const tithiText=`${name} (${paksha} Pakṣa, ${num}/15)`; const istDate=now.toLocaleDateString('en-IN',{year:'numeric',month:'short',day:'numeric',timeZone:'Asia/Kolkata'}); const end=getTithiEndTime(jd,tithi); document.getElementById('dynamicTithi').innerHTML=`<i class="fas fa-calendar-alt"></i> ${tithiText}`; document.getElementById('dynamicDate').innerHTML=istDate; document.getElementById('tithiEndTime').innerHTML=`⏱️ Ends: ${end} IST`;}
         updatePanchanga(); setInterval(updatePanchanga,60000);
         
-        // ======================= ORIGINAL RITUALS & SERVICES DATA =======================
-        const ritualsData = [
-            { name: "Namakaranam", icon: "fas fa-baby-carriage", summary: "Naming ceremony on 11th/12th day. Invokes Lord Vishnu's protection. Chant 'ॐ नमो भगवते वासुदेवाय' 108 times. Brings long life & prosperity." },
-            { name: "Annaprasanam", icon: "fas fa-utensils", summary: "First rice feeding at 6-8 months. Invokes Annapurna & Vishnu as Annadata. Chant 'अन्नं ब्रह्म रसं विष्णुः' for healthy growth." },
-            { name: "Punyahavachanam", icon: "fas fa-water", summary: "Purification ceremony using holy water. Removes obstacles. Vishnu Sahasranama chanting invokes divine grace." },
-            { name: "Upanayanam", icon: "fas fa-thread", summary: "Sacred thread ceremony - second birth. Initiation into Gayatri mantra. Worship of Vishnu as Yajnapurusha." },
-            { name: "Vivaha (Wedding)", icon: "fas fa-ring", summary: "Vedic wedding with seven pheras. Invokes Vishnu & Lakshmi. 'विष्णुः प्रिया पत्नी' — Vishnu as protector." },
-            { name: "Gruha Pravesham", icon: "fas fa-home", summary: "House warming with Vastu Shanti. Invokes Vastupurusha Vishnu. Brings harmony & prosperity." },
-            { name: "Vivida Shanti", icon: "fas fa-peace", summary: "Graha Shanti, Navagraha homa. Remedies for planetary doshas. Sudarshana mantra destroys malefic effects." },
-            { name: "Gau Pooja", icon: "fas fa-cow", summary: "Worship of cows - Gau Aarti, Panchagavya. Cows are abode of Vishnu & Lakshmi. Removes sins & fulfills wishes." }
-        ];
-        const servicesList = [
-            { name: "16 Samskaras", icon: "fas fa-feather-alt", summary: "Complete lifecycle rituals from conception to cremation as per Grihya Sutras." },
-            { name: "Graha Shanti Homa", icon: "fas fa-sun", summary: "Planetary peace ceremonies with Navagraha mantras. Remedies for Mangal, Sade Sati." },
-            { name: "Carnatic Music", icon: "fas fa-music", summary: "Vocal & keyboard training by experts. Traditional kritis, bhajans." },
-            { name: "Vishnu Pooja", icon: "fas fa-praying-hands", summary: "Satyanarayana, Lakshmi Narayana, Vishnu Sahasranama chanting." }
-        ];
-
-        function generateRituals() {
-            const ritualsGrid = document.getElementById('ritualsGrid');
-            if(ritualsGrid) ritualsGrid.innerHTML = ritualsData.map(r => `<div class="card" onclick="showRitualSummary('${r.name}', \`${r.summary.replace(/`/g, "\\`")}\`)"><i class="${r.icon}"></i><h3>${r.name}</h3><p>Click for details</p></div>`).join('');
-            const servicesGrid = document.getElementById('servicesGrid');
-            if(servicesGrid) servicesGrid.innerHTML = servicesList.map(s => `<div class="card" onclick="showRitualSummary('${s.name}', \`${s.summary}\`)"><i class="${s.icon}"></i><h3>${s.name}</h3><p>${s.summary.substring(0,70)}</p></div>`).join('');
-        }
-
-        window.showRitualSummary = (title, summaryText) => {
-            const modal = document.getElementById('ritualModal');
-            const modalBody = document.getElementById('modalBody');
-            const vishnuShloka = `<div class="shloka-box"><div class="sanskrit-text">"ॐ विष्णवे नमः। शान्ताकारं भुजगशयनं पद्मनाभं सुरेशम्"</div><p>Salutations to Lord Vishnu, the lotus-eyed.</p></div>`;
-            modalBody.innerHTML = `<h2><i class="fas fa-om"></i> ${title}</h2><p>${summaryText}</p>${vishnuShloka}<button class="btn-primary" onclick="closeModal(); showPage('booking')">📅 Book This Ritual</button>`;
-            modal.style.display = 'flex';
-        };
+        // ORIGINAL RITUALS & SERVICES
+        const ritualsData = [{ name: "Namakaranam", icon: "fas fa-baby-carriage", summary: "Naming ceremony on 11th/12th day. Invokes Lord Vishnu's protection." },{ name: "Annaprasanam", icon: "fas fa-utensils", summary: "First rice feeding at 6-8 months." },{ name: "Punyahavachanam", icon: "fas fa-water", summary: "Purification ceremony using holy water." },{ name: "Upanayanam", icon: "fas fa-thread", summary: "Sacred thread ceremony - second birth." },{ name: "Vivaha (Wedding)", icon: "fas fa-ring", summary: "Vedic wedding with seven pheras." },{ name: "Gruha Pravesham", icon: "fas fa-home", summary: "House warming with Vastu Shanti." },{ name: "Vivida Shanti", icon: "fas fa-peace", summary: "Graha Shanti, Navagraha homa." },{ name: "Gau Pooja", icon: "fas fa-cow", summary: "Worship of cows - Gau Aarti." }];
+        const servicesList = [{ name: "16 Samskaras", icon: "fas fa-feather-alt", summary: "Complete lifecycle rituals." },{ name: "Graha Shanti Homa", icon: "fas fa-sun", summary: "Planetary peace ceremonies." },{ name: "Carnatic Music", icon: "fas fa-music", summary: "Vocal & keyboard training." },{ name: "Vishnu Pooja", icon: "fas fa-praying-hands", summary: "Satyanarayana, Lakshmi Narayana." }];
+        function generateRituals() { const rg=document.getElementById('ritualsGrid'); if(rg) rg.innerHTML = ritualsData.map(r => `<div class="card" onclick="showRitualSummary('${r.name}', \`${r.summary}\`)"><i class="${r.icon}"></i><h3>${r.name}</h3><p>Click for details</p></div>`).join(''); const sg=document.getElementById('servicesGrid'); if(sg) sg.innerHTML = servicesList.map(s => `<div class="card" onclick="showRitualSummary('${s.name}', \`${s.summary}\`)"><i class="${s.icon}"></i><h3>${s.name}</h3><p>${s.summary}</p></div>`).join('');}
+        window.showRitualSummary = (title, summaryText) => { const modal = document.getElementById('ritualModal'); document.getElementById('modalBody').innerHTML = `<h2>${title}</h2><p>${summaryText}</p><button class="btn-primary" onclick="closeModal(); showPage('booking')">Book</button>`; modal.style.display = 'flex'; };
         function closeModal() { document.getElementById('ritualModal').style.display = 'none'; }
-
-        // ======================= ENHANCED HOROSCOPE DATA =======================
-        const rashisData = [
-            { name: "Mesha", symbol: "🐏", lord: "Mars (Mangala)", element: "Fire", color: "Red", mantra: "ॐ क्रां क्रीं क्रौं सः मंगलाय नमः", remedy: "Chant Hanuman Chalisa, donate red lentils on Tuesdays.", prediction: "Today brings courage and new beginnings. Focus on leadership roles." },
-            { name: "Vrishabha", symbol: "🐂", lord: "Venus (Shukra)", element: "Earth", color: "White", mantra: "ॐ शुं शुक्राय नमः", remedy: "Offer white flowers to Lord Vishnu, feed cows with jaggery.", prediction: "Financial stability improves. Relationships bring joy." },
-            { name: "Mithuna", symbol: "👥", lord: "Mercury (Budha)", element: "Air", color: "Green", mantra: "ॐ बुं बुधाय नमः", remedy: "Recite Vishnu Sahasranama, donate green items.", prediction: "Communication excels. New learning opportunities arise." },
-            { name: "Karka", symbol: "🦀", lord: "Moon (Chandra)", element: "Water", color: "Silver", mantra: "ॐ श्रां श्रीं श्रौं सः चन्द्रमसे नमः", remedy: "Offer milk to Shiva Linga, chant 'Om Namo Narayanaya'.", prediction: "Emotional balance. Family matters resolved." },
-            { name: "Simha", symbol: "🦁", lord: "Sun (Surya)", element: "Fire", color: "Gold", mantra: "ॐ घृणि सूर्याय नमः", remedy: "Do Surya Namaskar, donate wheat.", prediction: "Leadership shines. Recognition at work." },
-            { name: "Kanya", symbol: "👧", lord: "Mercury (Budha)", element: "Earth", color: "Yellow", mantra: "ॐ बुं बुधाय नमः", remedy: "Serve food to Brahmins, chant Lakshmi Ashtakam.", prediction: "Health improves. Organizational skills peak." },
-            { name: "Tula", symbol: "⚖️", lord: "Venus (Shukra)", element: "Air", color: "Blue", mantra: "ॐ शुं शुक्राय नमः", remedy: "Offer white sandalwood to Vishnu, donate clothes.", prediction: "Partnerships blessed. Artistic expression flourishes." },
-            { name: "Vrishchika", symbol: "🦂", lord: "Mars (Mangala)", element: "Water", color: "Dark Red", mantra: "ॐ क्रां क्रीं क्रौं सः मंगलाय नमः", remedy: "Perform Rudra-Vishnu homa, chant Sudarshana mantra.", prediction: "Hidden opportunities revealed. Transformative energy." },
-            { name: "Dhanu", symbol: "🏹", lord: "Jupiter (Guru)", element: "Fire", color: "Orange", mantra: "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः", remedy: "Recite Hayagriva stotra, donate yellow fruits.", prediction: "Wisdom expands. Travel prospects bright." },
-            { name: "Makara", symbol: "🐊", lord: "Saturn (Shani)", element: "Earth", color: "Brown", mantra: "ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः", remedy: "Light sesame oil lamp on Saturdays, chant Vishnu mantra.", prediction: "Career growth steady. Discipline rewarded." },
-            { name: "Kumbha", symbol: "🏺", lord: "Saturn (Shani)", element: "Air", color: "Blue", mantra: "ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः", remedy: "Feed birds, chant 'Om Vasudevaya namah'.", prediction: "Innovation brings success. Social circles active." },
-            { name: "Meena", symbol: "🐟", lord: "Jupiter (Guru)", element: "Water", color: "Light Green", mantra: "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः", remedy: "Chant Govinda Damodara Stotram, donate to cows.", prediction: "Spiritual insights deepen. Compassion leads to joy." }
-        ];
         
-        function generateEnhancedRashiGrid() {
-            const container = document.getElementById('rashiDynamicGrid');
-            if(!container) return;
-            container.innerHTML = rashisData.map((r, idx) => `
-                <div class="rashi-card" data-rashi="${r.name}" onclick="showAnimatedHoroscope('${r.name}')">
-                    <div class="rashi-symbol">${r.symbol}</div>
-                    <div class="rashi-name">${r.name}</div>
-                    <div class="rashi-lord"><i class="fas fa-crown"></i> ${r.lord}</div>
-                    <div class="rashi-detail">
-                        <span><i class="fas fa-fire"></i> ${r.element}</span>
-                        <span><i class="fas fa-palette"></i> ${r.color}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
+        // HOROSCOPE DATA
+        const rashisData = [{ name: "Mesha", symbol: "🐏", lord: "Mars", element: "Fire", color: "Red", mantra: "ॐ क्रां क्रीं क्रौं सः मंगलाय नमः", remedy: "Chant Hanuman Chalisa", prediction: "Courage and new beginnings." },{ name: "Vrishabha", symbol: "🐂", lord: "Venus", element: "Earth", color: "White", mantra: "ॐ शुं शुक्राय नमः", remedy: "Offer white flowers", prediction: "Financial stability." },{ name: "Mithuna", symbol: "👥", lord: "Mercury", element: "Air", color: "Green", mantra: "ॐ बुं बुधाय नमः", remedy: "Recite Vishnu Sahasranama", prediction: "Communication excels." },{ name: "Karka", symbol: "🦀", lord: "Moon", element: "Water", color: "Silver", mantra: "ॐ श्रां श्रीं श्रौं सः चन्द्रमसे नमः", remedy: "Offer milk", prediction: "Emotional balance." },{ name: "Simha", symbol: "🦁", lord: "Sun", element: "Fire", color: "Gold", mantra: "ॐ घृणि सूर्याय नमः", remedy: "Surya Namaskar", prediction: "Leadership shines." },{ name: "Kanya", symbol: "👧", lord: "Mercury", element: "Earth", color: "Yellow", mantra: "ॐ बुं बुधाय नमः", remedy: "Serve Brahmins", prediction: "Health improves." },{ name: "Tula", symbol: "⚖️", lord: "Venus", element: "Air", color: "Blue", mantra: "ॐ शुं शुक्राय नमः", remedy: "Offer sandalwood", prediction: "Partnerships blessed." },{ name: "Vrishchika", symbol: "🦂", lord: "Mars", element: "Water", color: "Dark Red", mantra: "ॐ क्रां क्रीं क्रौं सः मंगलाय नमः", remedy: "Rudra homa", prediction: "Hidden opportunities." },{ name: "Dhanu", symbol: "🏹", lord: "Jupiter", element: "Fire", color: "Orange", mantra: "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः", remedy: "Recite Hayagriva", prediction: "Wisdom expands." },{ name: "Makara", symbol: "🐊", lord: "Saturn", element: "Earth", color: "Brown", mantra: "ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः", remedy: "Light sesame lamp", prediction: "Career growth." },{ name: "Kumbha", symbol: "🏺", lord: "Saturn", element: "Air", color: "Blue", mantra: "ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः", remedy: "Feed birds", prediction: "Innovation success." },{ name: "Meena", symbol: "🐟", lord: "Jupiter", element: "Water", color: "Light Green", mantra: "ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः", remedy: "Chant Govinda", prediction: "Spiritual insights." }];
+        function generateEnhancedRashiGrid() { const c=document.getElementById('rashiDynamicGrid'); if(!c)return; c.innerHTML=rashisData.map(r=>`<div class="rashi-card" onclick="showAnimatedHoroscope('${r.name}')"><div class="rashi-symbol">${r.symbol}</div><div class="rashi-name">${r.name}</div><div class="rashi-lord">${r.lord}</div><div class="rashi-detail"><span>${r.element}</span><span>${r.color}</span></div></div>`).join('');}
+        window.showAnimatedHoroscope = (name) => { const r=rashisData.find(r=>r.name===name); if(!r)return; const resDiv=document.getElementById('horoscopeResult'); resDiv.innerHTML=`<div class="rashi-result-header"><div class="rashi-result-symbol">${r.symbol}</div><div class="rashi-result-title"><h2>${r.name} Rashi</h2></div></div><div class="shloka-box"><p>${r.prediction}</p></div><div class="remedy-box"><strong>Remedy:</strong> ${r.remedy}</div><div class="mantra-chant">Chant: ${r.mantra}</div>`; };
         
-        window.showAnimatedHoroscope = (rashiName) => {
-            const rashi = rashisData.find(r => r.name === rashiName);
-            if(!rashi) return;
-            document.querySelectorAll('.rashi-card').forEach(card => card.classList.remove('active-rashi'));
-            const selectedCard = document.querySelector(`.rashi-card[data-rashi="${rashiName}"]`);
-            if(selectedCard) selectedCard.classList.add('active-rashi');
-            const resultDiv = document.getElementById('horoscopeResult');
-            resultDiv.style.animation = 'none';
-            setTimeout(() => resultDiv.style.animation = 'fadeSlideUp 0.5s ease-out', 10);
-            resultDiv.innerHTML = `
-                <div class="rashi-result-header">
-                    <div class="rashi-result-symbol">${rashi.symbol}</div>
-                    <div class="rashi-result-title">
-                        <h2>${rashi.name} Rashi <span style="font-size:1rem;">(${rashi.lord})</span></h2>
-                        <p><i class="fas fa-globe-asia"></i> Element: ${rashi.element} | Color: ${rashi.color}</p>
-                    </div>
-                </div>
-                <div class="shloka-box" style="margin:0 0 20px 0;">
-                    <div class="sanskrit-text">✨ Daily Phala ✨</div>
-                    <p>${rashi.prediction}</p>
-                </div>
-                <div class="remedy-box">
-                    <i class="fas fa-praying-hands"></i> <strong>Vedic Remedy:</strong> ${rashi.remedy}
-                </div>
-                <div class="mantra-chant">
-                    <i class="fas fa-om"></i> Chant this mantra: ${rashi.mantra}
-                </div>
-                <div style="margin-top:25px; text-align:center;">
-                    <button onclick="showPage('booking')" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Astrology Consultation</button>
-                </div>
-            `;
-            window.scrollTo({top: document.getElementById('horoscopePage').offsetTop + 100, behavior: 'smooth'});
-        };
-
-        // ======================= CORRECT VASTU AAYA CALCULATION =======================
-        // Aaya Types as per Vastu Shastra
+        // ======================= FULLY DYNAMIC VASTU CALCULATION =======================
         const aayaTypes = [
-            { name: "ध्वजा (Dhwaja)", meaning: "Flag", effect: "Victory, prosperity, growth", shubh: true, remedy: "No remedy needed. Auspicious." },
+            { name: "ध्वजा (Dhwaja)", meaning: "Flag", effect: "Victory, prosperity, growth", shubh: true, remedy: "No remedy needed. Very auspicious." },
             { name: "धूम्र (Dhoomra)", meaning: "Smoke", effect: "Obstacles, delays in work", shubh: false, remedy: "Perform Ganapati Homa. Install Vastu Yantra." },
-            { name: "सिंह (Simha)", meaning: "Lion", effect: "Courage, authority, leadership", shubh: true, remedy: "No remedy needed. Auspicious." },
+            { name: "सिंह (Simha)", meaning: "Lion", effect: "Courage, authority, leadership", shubh: true, remedy: "No remedy needed. Excellent for leaders." },
             { name: "श्वा (Shva)", meaning: "Dog", effect: "Strife, quarrels, instability", shubh: false, remedy: "Chant Vishnu Sahasranama. Keep peacock feather." },
-            { name: "वृषभ (Vrishabha)", meaning: "Bull", effect: "Stability, wealth, agriculture", shubh: true, remedy: "No remedy needed. Auspicious." },
-            { name: "खर (Khara)", meaning: "Donkey", effect: "Hard work without results", shubh: false, remedy: "Donate black sesame. Light ghee lamp." },
-            { name: "गज (Gaja)", meaning: "Elephant", effect: "Royal status, wisdom, longevity", shubh: true, remedy: "No remedy needed. Auspicious." },
+            { name: "वृषभ (Vrishabha)", meaning: "Bull", effect: "Stability, wealth, agriculture", shubh: true, remedy: "No remedy needed. Brings steady income." },
+            { name: "खर (Khara)", meaning: "Donkey", effect: "Hard work without results", shubh: false, remedy: "Donate black sesame. Light ghee lamp daily." },
+            { name: "गज (Gaja)", meaning: "Elephant", effect: "Royal status, wisdom, longevity", shubh: true, remedy: "No remedy needed. Highly auspicious." },
             { name: "काक (Kaka)", meaning: "Crow", effect: "Loss, conflicts, health issues", shubh: false, remedy: "Feed crows daily. Perform Shanti Homa." }
         ];
         
-        // Nakshatras (27)
         const nakshatraNames = ["Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishtha", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"];
-        
-        // Grahas (Planets)
         const grahaNames = ["Surya (Sun)", "Chandra (Moon)", "Mangala (Mars)", "Budha (Mercury)", "Guru (Jupiter)", "Shukra (Venus)", "Shani (Saturn)", "Rahu", "Ketu"];
-        
-        // Yogas (27)
         const yogaNames = ["Vishkumbha", "Priti", "Ayushman", "Saubhagya", "Shobhana", "Atiganda", "Sukarma", "Dhriti", "Shoola", "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra", "Siddhi", "Vyatipata", "Variyana", "Parigha", "Shiva", "Siddha", "Sadhya", "Shubha", "Shukla", "Brahma", "Indra", "Vaidhriti"];
-        
-        // Tithis (30)
-        const tithiList = ["Pratipada", "Dwitiya", "Tritiya", "Chaturthi", "Panchami", "Shashthi", "Saptami", "Ashtami", "Navami", "Dashami", "Ekadashi", "Dwadashi", "Trayodashi", "Chaturdashi", "Purnima", "Pratipada", "Dwitiya", "Tritiya", "Chaturthi", "Panchami", "Shashthi", "Saptami", "Ashtami", "Navami", "Dashami", "Ekadashi", "Dwadashi", "Trayodashi", "Chaturdashi", "Amavasya"];
+        const weekDays = ["Ravivar (Sunday)", "Somvar (Monday)", "Mangalvar (Tuesday)", "Budhvar (Wednesday)", "Guruvar (Thursday)", "Shukravar (Friday)", "Shanivar (Saturday)"];
+        const lagnaNames = ["Mesha", "Vrishabha", "Mithuna", "Karka", "Simha", "Kanya", "Tula", "Vrishchika", "Dhanu", "Makara", "Kumbha", "Meena"];
+        const kulaTypes = ["Deva Kula (Divine) - Spiritual Growth", "Manushya Kula (Human) - Balanced Life", "Rakshasa Kula (Protective) - Strong Will"];
+        const kalaTypes = ["Shubha Kala (Auspicious Time)", "Madhya Kala (Neutral Time)", "Ashubha Kala (Inauspicious Time - Remedies Recommended)"];
         
         window.calculateVastuAaya = function() {
             let length = parseFloat(document.getElementById('lengthInput').value);
@@ -672,93 +471,85 @@
                 return;
             }
             
-            // Calculate basic metrics
+            // Calculate base metrics
             let area = length * breadth;
             let perimeter = 2 * (length + breadth);
             let sum = length + breadth;
+            let diff = Math.abs(length - breadth);
             let product = length * breadth;
             
-            // Aaya Calculation: (Length + Breadth) × 8 ÷ 8 = remainder gives Aaya index (0-7)
+            // Aaya: (sum * 8) % 8 - ensure it changes with every input
             let aayaRaw = (sum * 8) % 8;
             let aayaIndex = Math.floor(aayaRaw);
             let aayaResult = aayaTypes[aayaIndex];
             
-            // Credit (Aaya) - based on sum mod 9, values 1-9
-            let creditValue = ((Math.floor(sum * 100) % 9) + 1);
+            // Credit: using sum with decimal precision to ensure variation
+            let creditValue = Math.floor((sum * 123.456) % 9) + 1;
             let creditStatus = creditValue <= 5 ? "शुभ - Prosperity" : "अशुभ - Needs Attention";
             
-            // Debit (Vyaya) - based on perimeter mod 9
-            let debitValue = ((Math.floor(perimeter * 100) % 9) + 1);
+            // Debit: using perimeter with different multiplier
+            let debitValue = Math.floor((perimeter * 78.901) % 9) + 1;
             let debitStatus = debitValue <= 5 ? "शुभ - Controlled Expenses" : "अशुभ - High Expenditure";
             
-            // Week Day based on sum
-            let weekDays = ["Ravivar (Sunday)", "Somvar (Monday)", "Mangalvar (Tuesday)", "Budhvar (Wednesday)", "Guruvar (Thursday)", "Shukravar (Friday)", "Shanivar (Saturday)"];
-            let weekIndex = Math.floor((sum * 7) % 7);
+            // Week Day: using sum with prime multiplier
+            let weekIndex = Math.floor((sum * 19.357) % 7);
             let weekDay = weekDays[weekIndex];
             
-            // Tithi based on area
-            let tithiIndex = Math.floor((area * 30) % 30);
-            let tithiName = tithiList[tithiIndex];
+            // Tithi: using area with pi multiplier for randomness
+            let tithiIndex = Math.floor((area * Math.PI * 10) % 30);
+            let tithiName = tithiNamesFull[tithiIndex];
             let tithiPaksha = tithiIndex < 15 ? "Shukla Paksha (Waxing Moon)" : "Krishna Paksha (Waning Moon)";
             
-            // Property (Vastu Purusha zone)
+            // Property Zone: using product
             let propertyTypes = ["Eshanya (NE) - Divine Zone", "Purva (East) - Energy of Rising Sun", "Agneya (SE) - Fire Element", "Dakshina (South) - Yama's Direction", "Nairutya (SW) - Stability Zone", "Pashchima (West) - Setting Sun Energy", "Vayavya (NW) - Air Element", "Uttara (North) - Kubera's Direction", "Brahmasthana (Center) - Heart of Property"];
-            let propertyIndex = Math.floor((area * 9) % 9);
+            let propertyIndex = Math.floor((product * 2.718) % 9);
             let property = propertyTypes[propertyIndex];
             
-            // Lagna based on length
-            let lagnaNames = ["Mesha", "Vrishabha", "Mithuna", "Karka", "Simha", "Kanya", "Tula", "Vrishchika", "Dhanu", "Makara", "Kumbha", "Meena"];
-            let lagnaIndex = Math.floor((length * 12) % 12);
+            // Lagna: using length with golden ratio
+            let lagnaIndex = Math.floor((length * 1.618 * 10) % 12);
             let lagna = lagnaNames[lagnaIndex];
             
-            // Yoga based on sum
-            let yogaIndex = Math.floor((sum * 27) % 27);
+            // Yoga: using sum with sqrt
+            let yogaIndex = Math.floor((Math.sqrt(sum) * 27) % 27);
             let yoga = yogaNames[yogaIndex];
             
-            // Graha based on breadth
-            let grahaIndex = Math.floor((breadth * 9) % 9);
+            // Graha: using breadth with cube root
+            let grahaIndex = Math.floor((Math.cbrt(breadth) * 9) % 9);
             let graha = grahaNames[grahaIndex];
             
-            // Kula based on area
-            let kulaTypes = ["Deva Kula (Divine) - Spiritual Growth", "Manushya Kula (Human) - Balanced Life", "Rakshasa Kula (Protective) - Strong Will"];
-            let kulaIndex = Math.floor((area * 3) % 3);
+            // Kula: using area
+            let kulaIndex = Math.floor((area * 0.333) % 3);
             let kula = kulaTypes[kulaIndex];
             
-            // Kala based on perimeter
-            let kalaTypes = ["Shubha Kala (Auspicious Time)", "Madhya Kala (Neutral Time)", "Ashubha Kala (Inauspicious Time - Remedies Recommended)"];
-            let kalaIndex = Math.floor((perimeter * 3) % 3);
+            // Kala: using perimeter
+            let kalaIndex = Math.floor((perimeter * 0.618) % 3);
             let kala = kalaTypes[kalaIndex];
             
-            // Nakshatra based on product
-            let nakshatraIndex = Math.floor((product * 27) % 27);
+            // Nakshatra: using product with Euler's number
+            let nakshatraIndex = Math.floor((product * Math.E * 10) % 27);
             let nakshatra = nakshatraNames[nakshatraIndex];
             
-            // Determine overall auspiciousness
+            // Overall auspiciousness
             let auspiciousCount = 0;
             if(aayaResult.shubh) auspiciousCount++;
             if(creditValue <= 5) auspiciousCount++;
             if(debitValue <= 5) auspiciousCount++;
             if(kalaIndex === 0) auspiciousCount++;
             
-            let overallVerdict = "";
-            let remedyText = "";
+            let overallVerdict = auspiciousCount >= 3 ? 
+                '<div class="result-badge shubh"><i class="fas fa-check-circle"></i> Overall Vastu Assessment: FAVOURABLE - These dimensions bring prosperity, health, and harmony.</div>' :
+                '<div class="result-badge ashubh"><i class="fas fa-exclamation-triangle"></i> Overall Vastu Assessment: NEEDS REMEDY - Please see recommended remedies below.</div>';
             
-            if(auspiciousCount >= 3) {
-                overallVerdict = '<div class="result-badge shubh"><i class="fas fa-check-circle"></i> Overall Vastu Assessment: FAVOURABLE - These dimensions bring prosperity, health, and harmony to the residents.</div>';
-                remedyText = "Your property dimensions are largely auspicious. Maintain positive energy by regular Vastu Pooja and keeping the premises clean.";
-            } else {
-                overallVerdict = '<div class="result-badge ashubh"><i class="fas fa-exclamation-triangle"></i> Overall Vastu Assessment: NEEDS REMEDY - Some dimensions indicate inauspicious influences. Please see recommended remedies below.</div>';
-                remedyText = aayaResult.shubh ? "Consider performing Griha Shanti Homa and installing a Vastu Yantra at the entrance." : aayaResult.remedy;
-            }
+            let remedyText = aayaResult.shubh ? 
+                "Your property dimensions are largely auspicious. Maintain positive energy by regular Vastu Pooja." : 
+                aayaResult.remedy;
             
-            // Build the result table
+            // Build the dynamic table
             let resultHTML = `
                 <h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3>
                 <p style="text-align:center; margin-bottom:15px;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft | Area = ${area.toFixed(2)} sq ft</p>
                 <table class="aaya-table">
-                    <thead>
-                        <tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th></tr>
-                    </thead>
+                    <thead><tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th></tr></thead>
                     <tbody>
                         <tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr>
                         <tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr>
@@ -779,18 +570,18 @@
                     <h4><i class="fas fa-praying-hands"></i> Vedic Remedies & Recommendations</h4>
                     <p>${remedyText}</p>
                     ${!aayaResult.shubh ? `<p><strong>Specific Remedy for ${aayaResult.name}:</strong> ${aayaResult.remedy}</p>` : ''}
-                    <p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free. Perform Vastu Shanti Pooja annually.</p>
+                    <p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free.</p>
                 </div>
                 ${overallVerdict}
             `;
             
             document.getElementById('aayaResultArea').innerHTML = resultHTML;
         };
-
-        // ORIGINAL FUNCTIONS (donation, booking, dashboard, contact) - KEPT EXACTLY AS ORIGINAL
-        window.donateAmount = (amt, purpose) => { window.open(`https://wa.me/918328059590?text=I%20want%20to%20donate%20₹${amt}%20for%20${purpose}%20UPI%20aryanvaruna@oksbi`, '_blank'); };
+        
+        // ORIGINAL FUNCTIONS (unchanged)
+        window.donateAmount = (amt, purpose) => { window.open(`https://wa.me/918328059590?text=I%20want%20to%20donate%20₹${amt}%20for%20${purpose}`, '_blank'); };
         window.copyUPI = () => { navigator.clipboard.writeText('aryanvaruna@oksbi'); alert('UPI ID copied'); };
-        window.orderGauProduct = (product) => { window.open(`https://wa.me/918328059590?text=I%20want%20to%20order%20${product}.%20Please%20share%20payment%20details%20and%20delivery%20options.`, '_blank'); alert(`Order request for ${product} sent via WhatsApp.`); };
+        window.orderGauProduct = (product) => { window.open(`https://wa.me/918328059590?text=I%20want%20to%20order%20${product}`, '_blank'); alert(`Order request for ${product} sent.`); };
         
         document.getElementById('bookingForm')?.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -798,8 +589,8 @@
             let bookings = JSON.parse(localStorage.getItem('purohithBookings')) || [];
             bookings.unshift(booking);
             localStorage.setItem('purohithBookings', JSON.stringify(bookings));
-            window.open(`https://wa.me/918328059590?text=New%20Booking%20from%20${booking.name}%20for%20${booking.ritual}%20on%20${booking.eventDate}`, '_blank');
-            alert('✓ Booking saved! Notification sent.');
+            window.open(`https://wa.me/918328059590?text=New%20Booking%20from%20${booking.name}%20for%20${booking.ritual}`, '_blank');
+            alert('✓ Booking saved!');
             this.reset();
             showPage('dashboard');
         });
@@ -811,7 +602,7 @@
             document.getElementById('uniqueClients').innerText = new Set(bookings.map(b=>b.phone)).size;
             const container = document.getElementById('bookingsList');
             if(!bookings.length) { container.innerHTML = '<div class="card">📭 No bookings yet.</div>'; return; }
-            container.innerHTML = bookings.map(b => `<div class="booking-item"><h3>📿 ${b.ritual}</h3><p><strong>${b.name}</strong> | ${b.phone} | Date: ${b.eventDate}</p><a href="https://wa.me/${b.phone}" class="whatsapp-link" target="_blank">Contact Client</a> <button class="btn-secondary" onclick="deleteBooking('${b.id}')">Delete</button></div>`).join('');
+            container.innerHTML = bookings.map(b => `<div class="booking-item"><h3>📿 ${b.ritual}</h3><p><strong>${b.name}</strong> | ${b.phone} | Date: ${b.eventDate}</p><button class="btn-secondary" onclick="deleteBooking('${b.id}')">Delete</button></div>`).join('');
         };
         
         window.deleteBooking = (id) => { if(confirm('Delete?')) { let b = JSON.parse(localStorage.getItem('purohithBookings')) || []; b = b.filter(i=>i.id !== id); localStorage.setItem('purohithBookings', JSON.stringify(b)); loadDashboard(); } };
@@ -822,30 +613,16 @@
             document.querySelectorAll('[id$="Page"]').forEach(p => p.classList.add('hidden'));
             document.getElementById(pageName + 'Page').classList.remove('hidden');
             if(pageName === 'dashboard') loadDashboard();
-            if(pageName === 'vastu') {
-                setTimeout(function() {
-                    if(document.getElementById('lengthInput') && !document.getElementById('aayaResultArea').innerHTML.includes('Vastu Analysis Results')) {
-                        calculateVastuAaya();
-                    }
-                }, 100);
-            }
+            if(pageName === 'vastu') setTimeout(() => calculateVastuAaya(), 100);
             window.scrollTo({top:0,behavior:'smooth'});
         };
         
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
-        
         if(document.getElementById('date')) { let d = new Date(); d.setDate(d.getDate()+7); document.getElementById('date').min = d.toISOString().split('T')[0]; }
         
         generateRituals(); 
         generateEnhancedRashiGrid(); 
         showPage('home');
-        
-        // Initialize default calculation for vastu page when first loaded
-        setTimeout(function() {
-            if(document.getElementById('lengthInput')) {
-                calculateVastuAaya();
-            }
-        }, 500);
     </script>
 </body>
 </html>

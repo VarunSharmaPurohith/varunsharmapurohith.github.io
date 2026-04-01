@@ -436,6 +436,7 @@
         .delete-testimonial-btn, .delete-wallpaper-btn, .delete-program-btn { background-color: #c62828; color: white; border: none; border-radius: 30px; padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px; transition: 0.3s; }
         .delete-testimonial-btn:hover, .delete-wallpaper-btn:hover, .delete-program-btn:hover { background-color: #8b0000; transform: scale(1.02); }
         .file-info { font-size: 0.75rem; color: #6b4c3b; margin-top: 8px; }
+        .uploaded-image-preview { max-width: 100%; max-height: 150px; border-radius: 12px; margin: 10px 0; }
     </style>
 </head>
 <body>
@@ -784,19 +785,19 @@
             let overallVerdict = auspiciousCount >= 3 ? '<div class="result-badge shubh"><i class="fas fa-check-circle"></i> Overall Vastu Assessment: FAVOURABLE - These dimensions bring prosperity, health, and harmony.</div>' : '<div class="result-badge ashubh"><i class="fas fa-exclamation-triangle"></i> Overall Vastu Assessment: NEEDS REMEDY - Please see recommended remedies below.</div>';
             let remedyText = aayaResult.shubh ? "Your property dimensions are largely auspicious. Maintain positive energy by regular Vastu Pooja." : aayaResult.remedy;
             let resultHTML = `<h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3><p style="text-align:center; margin-bottom:15px;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft | Area = ${area.toFixed(2)} sq ft</p><table class="aaya-table"><thead><tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th></tr></thead><tbody>
-                 <tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr>
-                 <tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr>
-                 <tr><td><strong>💰 Credit (Aaya)</strong></td><td class="vastu-value">${creditValue} - ${creditStatus}</td><td>Represents income and inflow of wealth</td></tr>
-                 <tr><td><strong>💸 Debit (Vyaya)</strong></td><td class="vastu-value">${debitValue} - ${debitStatus}</td><td>Represents expenditure and outflow</td></tr>
-                 <tr><td><strong>📅 Week Day</strong></td><td class="vastu-value">${weekDay}</td><td>Associated planetary energy for the property</td></tr>
-                 <tr><td><strong>🌙 Tithi</strong></td><td class="vastu-value">${tithiName} (${tithiPaksha})</td><td>Lunar day influence on the dwelling</td></tr>
-                 <tr><td><strong>🏛️ Property Zone</strong></td><td class="vastu-value">${property}</td><td>Dominant Vastu Purusha zone</td></tr>
-                 <tr><td><strong>⭐ Lagna</strong></td><td class="vastu-value">${lagna}</td><td>Ascendant influence on property energy</td></tr>
-                 <tr><td><strong>🕉️ Yoga</strong></td><td class="vastu-value">${yoga}</td><td>Combined planetary influence</td></tr>
-                 <tr><td><strong>🌍 Graha (Planet)</strong></td><td class="vastu-value">${graha}</td><td>Ruling planet for these dimensions</td></tr>
-                 <tr><td><strong>👨‍👩‍👧‍👦 Kula</strong></td><td class="vastu-value">${kula}</td><td>Family/lineage energy type</td></tr>
-                 <tr><td><strong>⏰ Kala</strong></td><td class="vastu-value">${kala}</td><td>Temporal effect on residents</td></tr>
-                 <tr><td><strong>✨ Nakshatra</strong></td><td class="vastu-value">${nakshatra}</td><td>Lunar mansion influence</td></tr>
+                  <tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr>
+                  <tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr>
+                  <tr><td><strong>💰 Credit (Aaya)</strong></td><td class="vastu-value">${creditValue} - ${creditStatus}</td><td>Represents income and inflow of wealth</td></tr>
+                  <tr><td><strong>💸 Debit (Vyaya)</strong></td><td class="vastu-value">${debitValue} - ${debitStatus}</td><td>Represents expenditure and outflow</td></tr>
+                  <tr><td><strong>📅 Week Day</strong></td><td class="vastu-value">${weekDay}</td><td>Associated planetary energy for the property</td></tr>
+                  <tr><td><strong>🌙 Tithi</strong></td><td class="vastu-value">${tithiName} (${tithiPaksha})</td><td>Lunar day influence on the dwelling</td></tr>
+                  <tr><td><strong>🏛️ Property Zone</strong></td><td class="vastu-value">${property}</td><td>Dominant Vastu Purusha zone</td></tr>
+                  <tr><td><strong>⭐ Lagna</strong></td><td class="vastu-value">${lagna}</td><td>Ascendant influence on property energy</td></tr>
+                  <tr><td><strong>🕉️ Yoga</strong></td><td class="vastu-value">${yoga}</td><td>Combined planetary influence</td></tr>
+                  <tr><td><strong>🌍 Graha (Planet)</strong></td><td class="vastu-value">${graha}</td><td>Ruling planet for these dimensions</td></tr>
+                  <tr><td><strong>👨‍👩‍👧‍👦 Kula</strong></td><td class="vastu-value">${kula}</td><td>Family/lineage energy type</td></tr>
+                  <tr><td><strong>⏰ Kala</strong></td><td class="vastu-value">${kala}</td><td>Temporal effect on residents</td></tr>
+                  <tr><td><strong>✨ Nakshatra</strong></td><td class="vastu-value">${nakshatra}</td><td>Lunar mansion influence</td></tr>
                 </tbody></table><div class="remedy-suggestion"><h4><i class="fas fa-praying-hands"></i> Vedic Remedies & Recommendations</h4><p>${remedyText}</p>${!aayaResult.shubh ? `<p><strong>Specific Remedy for ${aayaResult.name}:</strong> ${aayaResult.remedy}</p>` : ''}<p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free.</p></div>${overallVerdict}`;
             document.getElementById('aayaResultArea').innerHTML = resultHTML;
         };
@@ -828,10 +829,10 @@
         window.deleteBooking = (id) => { if(confirm('Delete?')) { let b = JSON.parse(localStorage.getItem('purohithBookings')) || []; b = b.filter(i=>i.id !== id); localStorage.setItem('purohithBookings', JSON.stringify(b)); loadDashboard(); } };
         document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('contactName').value; const phone = document.getElementById('contactPhone').value; const msg = document.getElementById('contactMsg').value; window.open(`https://wa.me/918328059590?text=Message%20from%20${name}%20(${phone})%3A%20${encodeURIComponent(msg)}`,'_blank'); alert('Message sent'); e.target.reset(); });
         
-        // ======================= DRAG & DROP VARIABLES =======================
-        let testimonialImageBase64 = null;
-        let wallpaperImageBase64 = null;
-        let programImageBase64 = null;
+        // ======================= VARIABLES FOR STORING IMAGES =======================
+        let tempTestimonialImage = null;
+        let tempWallpaperImage = null;
+        let tempProgramImage = null;
         
         // Drag & Drop Helper Functions
         function handleDragOver(e) { e.preventDefault(); e.target.closest('.drop-zone')?.classList.add('drag-over'); }
@@ -842,58 +843,86 @@
             const zone = document.getElementById('testimonialDropZone');
             zone.classList.remove('drag-over');
             const file = e.dataTransfer.files[0];
-            if(file && file.type.startsWith('image/')) processTestimonialImage(file);
-            else alert('Please drop an image file');
+            if(file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempTestimonialImage = ev.target.result;
+                    document.getElementById('testimonialPreview').innerHTML = `<img src="${tempTestimonialImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('testimonialFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            } else alert('Please drop an image file');
         }
-        function handleTestimonialFileSelect(input) { if(input.files[0]) processTestimonialImage(input.files[0]); }
+        
+        function handleTestimonialFileSelect(input) {
+            if(input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempTestimonialImage = ev.target.result;
+                    document.getElementById('testimonialPreview').innerHTML = `<img src="${tempTestimonialImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('testimonialFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
         function handleWallpaperDrop(e) {
             e.preventDefault();
             const zone = document.getElementById('wallpaperDropZone');
             zone.classList.remove('drag-over');
             const file = e.dataTransfer.files[0];
-            if(file && file.type.startsWith('image/')) processWallpaperImage(file);
-            else alert('Please drop an image file');
+            if(file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempWallpaperImage = ev.target.result;
+                    document.getElementById('wallpaperPreview').innerHTML = `<img src="${tempWallpaperImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('wallpaperFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            } else alert('Please drop an image file');
         }
-        function handleWallpaperFileSelect(input) { if(input.files[0]) processWallpaperImage(input.files[0]); }
+        
+        function handleWallpaperFileSelect(input) {
+            if(input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempWallpaperImage = ev.target.result;
+                    document.getElementById('wallpaperPreview').innerHTML = `<img src="${tempWallpaperImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('wallpaperFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
         function handleProgramDrop(e) {
             e.preventDefault();
             const zone = document.getElementById('programDropZone');
             zone.classList.remove('drag-over');
             const file = e.dataTransfer.files[0];
-            if(file && file.type.startsWith('image/')) processProgramImage(file);
-            else alert('Please drop an image file');
+            if(file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempProgramImage = ev.target.result;
+                    document.getElementById('programPreview').innerHTML = `<img src="${tempProgramImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('programFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            } else alert('Please drop an image file');
         }
-        function handleProgramFileSelect(input) { if(input.files[0]) processProgramImage(input.files[0]); }
         
-        function processTestimonialImage(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                testimonialImageBase64 = e.target.result;
-                const preview = document.getElementById('testimonialPreview');
-                preview.innerHTML = `<img src="${testimonialImageBase64}" class="preview-img" alt="Preview">`;
-                document.getElementById('testimonialFileName').innerHTML = `📷 Selected: ${file.name}`;
-            };
-            reader.readAsDataURL(file);
-        }
-        function processWallpaperImage(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                wallpaperImageBase64 = e.target.result;
-                const preview = document.getElementById('wallpaperPreview');
-                preview.innerHTML = `<img src="${wallpaperImageBase64}" class="preview-img" alt="Preview">`;
-                document.getElementById('wallpaperFileName').innerHTML = `📷 Selected: ${file.name}`;
-            };
-            reader.readAsDataURL(file);
-        }
-        function processProgramImage(file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                programImageBase64 = e.target.result;
-                const preview = document.getElementById('programPreview');
-                preview.innerHTML = `<img src="${programImageBase64}" class="preview-img" alt="Preview">`;
-                document.getElementById('programFileName').innerHTML = `📷 Selected: ${file.name}`;
-            };
-            reader.readAsDataURL(file);
+        function handleProgramFileSelect(input) {
+            if(input.files && input.files[0]) {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    tempProgramImage = ev.target.result;
+                    document.getElementById('programPreview').innerHTML = `<img src="${tempProgramImage}" class="preview-img" alt="Preview">`;
+                    document.getElementById('programFileName').innerHTML = `📷 Image ready: ${file.name}`;
+                };
+                reader.readAsDataURL(file);
+            }
         }
         
         // Testimonials Functions
@@ -902,23 +931,30 @@
             const container = document.getElementById('testimonialsList');
             if(!container) return;
             if(testimonials.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-comment-dots"></i><p>No testimonials yet. Be the first to share your experience!</p></div>'; return; }
-            container.innerHTML = testimonials.map((t, idx) => `<div class="testimonial-item" data-testimonial-idx="${idx}"><i class="fas fa-quote-left" style="color:#FFA500; font-size:1.5rem;"></i><p class="testimonial-text">"${escapeHtml(t.message)}"</p><p class="testimonial-author">— ${escapeHtml(t.name)}</p><small style="color:#999;">${t.date}</small>${t.image ? `<div><img src="${escapeHtml(t.image)}" style="max-width:100%; max-height:150px; border-radius:12px; margin-top:10px;"></div>` : ''}<div><button class="delete-testimonial-btn" onclick="deleteTestimonial(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div></div>`).join('');
+            container.innerHTML = testimonials.map((t, idx) => `<div class="testimonial-item"><i class="fas fa-quote-left" style="color:#FFA500; font-size:1.5rem;"></i><p class="testimonial-text">"${escapeHtml(t.message)}"</p><p class="testimonial-author">— ${escapeHtml(t.name)}</p><small style="color:#999;">${t.date}</small>${t.image ? `<div><img src="${t.image}" class="uploaded-image-preview" alt="User uploaded"></div>` : ''}<div><button class="delete-testimonial-btn" onclick="deleteTestimonial(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div></div>`).join('');
         }
+        
         window.addTestimonialWithImage = function() {
             const name = document.getElementById('testimonialName').value.trim();
             const message = document.getElementById('testimonialMsg').value.trim();
             if(!name || !message) { alert("Please enter your name and testimonial message."); return; }
             let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
-            testimonials.unshift({ name: name, message: message, date: new Date().toLocaleDateString('en-IN'), image: testimonialImageBase64 || null });
+            testimonials.unshift({ 
+                name: name, 
+                message: message, 
+                date: new Date().toLocaleDateString('en-IN'), 
+                image: tempTestimonialImage || null 
+            });
             localStorage.setItem('purohithTestimonials', JSON.stringify(testimonials));
             document.getElementById('testimonialName').value = '';
             document.getElementById('testimonialMsg').value = '';
             document.getElementById('testimonialPreview').innerHTML = '';
             document.getElementById('testimonialFileName').innerHTML = '';
-            testimonialImageBase64 = null;
+            tempTestimonialImage = null;
             loadTestimonials();
             alert("Thank you for your valuable testimonial! ॐ नमो नारायणाय");
         };
+        
         window.deleteTestimonial = function(index) {
             if(confirm("Are you sure you want to delete this testimonial?")) {
                 let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
@@ -937,21 +973,32 @@
             if(wallpapers.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-images"></i><p>No wallpapers uploaded yet. Drag & drop images to add divine wallpapers.</p></div>'; return; }
             container.innerHTML = wallpapers.map((w, idx) => `<div class="wallpaper-item"><h3><i class="fas fa-image"></i> ${escapeHtml(w.title)}</h3><img src="${escapeHtml(w.image)}" class="wallpaper-img" alt="${escapeHtml(w.title)}" onclick="window.open('${escapeHtml(w.image)}', '_blank')"><small style="display:block; margin-top:10px;">Added: ${w.date}</small><button class="delete-wallpaper-btn" onclick="deleteWallpaper(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div>`).join('');
         }
+        
         window.addWallpaperWithImage = function() {
             const title = document.getElementById('wallpaperTitle').value.trim();
             if(!title) { alert("Please enter an image title."); return; }
-            if(!wallpaperImageBase64) { alert("Please drag & drop or select an image."); return; }
+            if(!tempWallpaperImage) { alert("Please drag & drop or select an image."); return; }
             let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || [];
-            wallpapers.unshift({ title: title, image: wallpaperImageBase64, date: new Date().toLocaleDateString('en-IN') });
+            wallpapers.unshift({ 
+                title: title, 
+                image: tempWallpaperImage, 
+                date: new Date().toLocaleDateString('en-IN') 
+            });
             localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers));
             document.getElementById('wallpaperTitle').value = '';
             document.getElementById('wallpaperPreview').innerHTML = '';
             document.getElementById('wallpaperFileName').innerHTML = '';
-            wallpaperImageBase64 = null;
+            tempWallpaperImage = null;
             loadWallpapers();
             alert("Wallpaper added successfully! ॐ श्री विष्णवे नमः");
         };
-        window.deleteWallpaper = function(index) { let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || []; wallpapers.splice(index, 1); localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers)); loadWallpapers(); };
+        
+        window.deleteWallpaper = function(index) { 
+            let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || []; 
+            wallpapers.splice(index, 1); 
+            localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers)); 
+            loadWallpapers(); 
+        };
         
         // Programs Functions
         function loadPrograms() {
@@ -961,27 +1008,48 @@
             if(programs.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-camera"></i><p>No program photos uploaded yet. Drag & drop images to add recent karyakramas.</p></div>'; return; }
             container.innerHTML = programs.map((p, idx) => `<div class="program-item"><h3><i class="fas fa-calendar-alt"></i> ${escapeHtml(p.title)}</h3><p><strong>📅 ${escapeHtml(p.date || 'Recent')}</strong></p><img src="${escapeHtml(p.image)}" class="wallpaper-img" alt="${escapeHtml(p.title)}" onclick="window.open('${escapeHtml(p.image)}', '_blank')"><p style="margin-top:10px;">${escapeHtml(p.description || 'Vedic ceremony performed with Vedic chanting')}</p><button class="delete-program-btn" onclick="deleteProgram(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div>`).join('');
         }
+        
         window.addProgramWithImage = function() {
             const title = document.getElementById('programTitle').value.trim();
             const date = document.getElementById('programDate').value.trim();
             const description = document.getElementById('programDesc').value.trim();
             if(!title) { alert("Please enter event name."); return; }
-            if(!programImageBase64) { alert("Please drag & drop or select a program photo."); return; }
+            if(!tempProgramImage) { alert("Please drag & drop or select a program photo."); return; }
             let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || [];
-            programs.unshift({ title: title, date: date || "Recent", image: programImageBase64, description: description || "Vedic ceremony performed with Vedic chanting", addedDate: new Date().toLocaleDateString('en-IN') });
+            programs.unshift({ 
+                title: title, 
+                date: date || "Recent", 
+                image: tempProgramImage, 
+                description: description || "Vedic ceremony performed with Vedic chanting", 
+                addedDate: new Date().toLocaleDateString('en-IN') 
+            });
             localStorage.setItem('purohithPrograms', JSON.stringify(programs));
             document.getElementById('programTitle').value = '';
             document.getElementById('programDate').value = '';
             document.getElementById('programDesc').value = '';
             document.getElementById('programPreview').innerHTML = '';
             document.getElementById('programFileName').innerHTML = '';
-            programImageBase64 = null;
+            tempProgramImage = null;
             loadPrograms();
             alert("Program photo added successfully! ॐ नमो भगवते वासुदेवाय");
         };
-        window.deleteProgram = function(index) { let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || []; programs.splice(index, 1); localStorage.setItem('purohithPrograms', JSON.stringify(programs)); loadPrograms(); };
         
-        function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+        window.deleteProgram = function(index) { 
+            let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || []; 
+            programs.splice(index, 1); 
+            localStorage.setItem('purohithPrograms', JSON.stringify(programs)); 
+            loadPrograms(); 
+        };
+        
+        function escapeHtml(str) { 
+            if(!str) return ''; 
+            return str.replace(/[&<>]/g, function(m){ 
+                if(m==='&') return '&amp;'; 
+                if(m==='<') return '&lt;'; 
+                if(m==='>') return '&gt;'; 
+                return m;
+            }); 
+        }
         
         window.showPage = function(pageName) {
             document.querySelectorAll('[id$="Page"]').forEach(p => p.classList.add('hidden'));
@@ -993,10 +1061,16 @@
             if(pageName === 'programs') loadPrograms();
             window.scrollTo({top:0,behavior:'smooth'});
         };
-        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
-        if(document.getElementById('date')) { let d = new Date(); d.setDate(d.getDate()+7); document.getElementById('date').min = d.toISOString().split('T')[0]; }
         
-        // Initialize with sample data - updating to use base64 for wallpapers
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+        
+        if(document.getElementById('date')) { 
+            let d = new Date(); 
+            d.setDate(d.getDate()+7); 
+            document.getElementById('date').min = d.toISOString().split('T')[0]; 
+        }
+        
+        // Initialize with sample data
         if(!localStorage.getItem('purohithTestimonials')) {
             localStorage.setItem('purohithTestimonials', JSON.stringify([
                 { name: "Rajesh Sharma", message: "The Upanayanam ceremony was conducted with utmost Vedic precision. The priests were knowledgeable and punctual. Highly recommended!", date: "15 Mar 2025", image: null },
@@ -1016,7 +1090,9 @@
             ]));
         }
         
-        generateRituals(); generateEnhancedRashiGrid(); showPage('home');
+        generateRituals(); 
+        generateEnhancedRashiGrid(); 
+        showPage('home');
     </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3acec5789e7c44d995b9ab3045cba202"}'></script><!-- End Cloudflare Web Analytics -->
 </body>

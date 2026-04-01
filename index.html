@@ -325,7 +325,7 @@
         .gau-product { border: 2px solid #FFD700; background: #fffaf0; }
         .rashi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
         
-        /* ========== VASTU PAGE ADDITIONAL STYLES (from with vastu neat) ========== */
+        /* ========== VASTU PAGE ADDITIONAL STYLES ========== */
         .aaya-calc-card {
             background: white;
             border-radius: 30px;
@@ -380,7 +380,42 @@
         .vastu-value { font-weight: 600; color: #8B4513; }
         .remedy-suggestion { background: #fff0e0; border-radius: 20px; padding: 20px; margin-top: 20px; }
         
-        /* ========== NEW STYLES FOR TESTIMONIALS, WALLPAPERS, PROGRAMS ========== */
+        /* ========== DRAG & DROP UPLOAD STYLES ========== */
+        .drop-zone {
+            border: 2px dashed #FFD700;
+            border-radius: 24px;
+            background: #fffef7;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+        .drop-zone.drag-over {
+            background: #fff0e0;
+            border-color: #FFA500;
+            border-style: solid;
+        }
+        .drop-zone i {
+            font-size: 2.5rem;
+            color: #FFA500;
+            margin-bottom: 10px;
+        }
+        .drop-zone p {
+            color: #8B4513;
+            margin: 5px 0;
+        }
+        .drop-zone .small-text {
+            font-size: 0.8rem;
+            color: #b87333;
+        }
+        .preview-img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 12px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
         .testimonial-item, .wallpaper-item, .program-item {
             background: white;
             border-radius: 24px;
@@ -398,8 +433,9 @@
         .admin-controls { background: #f9f2e6; padding: 20px; border-radius: 24px; margin-bottom: 30px; }
         .admin-controls input, .admin-controls textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 40px; border: 1px solid #e0c8a8; }
         .admin-controls textarea { border-radius: 20px; resize: vertical; }
-        .delete-testimonial-btn { background-color: #c62828; color: white; border: none; border-radius: 30px; padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .delete-testimonial-btn:hover { background-color: #8b0000; transform: scale(1.02); }
+        .delete-testimonial-btn, .delete-wallpaper-btn, .delete-program-btn { background-color: #c62828; color: white; border: none; border-radius: 30px; padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .delete-testimonial-btn:hover, .delete-wallpaper-btn:hover, .delete-program-btn:hover { background-color: #8b0000; transform: scale(1.02); }
+        .file-info { font-size: 0.75rem; color: #6b4c3b; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -436,7 +472,7 @@
 
     <div id="ritualModal" class="modal"><div class="modal-content"><span class="close-modal" onclick="closeModal()">&times;</span><div id="modalBody"></div></div></div>
 
-    <!-- HOME PAGE (ORIGINAL CONTENT) -->
+    <!-- HOME PAGE -->
     <div id="homePage">
         <section class="hero"><div class="container"><h1>🕉️ ॐ श्री शुभम करोति कल्याणम् 卐 🐄</h1><p>Traditional Hindu Rituals | Carnatic Music | Free Gita Classes | GauSeva | Pure Cow Dung Products</p><button onclick="showPage('booking')" class="btn-primary">📿 Book a Ritual</button> <button onclick="showPage('gauproducts')" class="btn-secondary">🪔 Order Cow Dung Cakes</button></div></section>
         <div class="container">
@@ -473,7 +509,7 @@
         </div>
     </div>
 
-    <!-- VASTU PAGE (FULLY DYNAMIC FROM with vastu neat) -->
+    <!-- VASTU PAGE -->
     <div id="vastuPage" class="hidden">
         <section class="hero"><h1>🏠 Vastu Consultation & Aaya Calculation 卐</h1><p>Harmonize your living spaces with ancient Vedic science | Length & Breadth based analysis</p></section>
         <div class="container">
@@ -529,7 +565,7 @@
     <!-- DASHBOARD PAGE -->
     <div id="dashboardPage" class="hidden"><section class="hero"><h1>📊 Booking Dashboard 卐</h1><p>Manage all client bookings & orders</p></section><div class="container"><div class="cards-grid" style="grid-template-columns:repeat(3,1fr)"><div class="card"><h3>📋 Total Bookings</h3><h2 id="totalBookings">0</h2></div><div class="card"><h3>⏳ Pending</h3><h2 id="pendingBookings">0</h2></div><div class="card"><h3>👥 Unique Clients</h3><h2 id="uniqueClients">0</h2></div></div><div id="bookingsList"></div><button class="btn-primary" onclick="loadDashboard()"><i class="fas fa-sync-alt"></i> Refresh</button></div></div>
 
-    <!-- TESTIMONIALS PAGE with Delete Function -->
+    <!-- TESTIMONIALS PAGE with Drag & Drop -->
     <div id="testimonialsPage" class="hidden">
         <section class="hero"><h1>📝 Devotee Testimonials 卐</h1><p>Share your spiritual experiences and feedback</p></section>
         <div class="container">
@@ -538,30 +574,44 @@
                 <h3><i class="fas fa-pen-alt"></i> Add Your Testimonial</h3>
                 <input type="text" id="testimonialName" placeholder="Your Name *">
                 <textarea id="testimonialMsg" rows="3" placeholder="Your experience with our services, rituals, or products... *"></textarea>
-                <button class="btn-primary" onclick="addTestimonial()"><i class="fas fa-share-alt"></i> Share Testimonial</button>
+                <div id="testimonialDropZone" class="drop-zone" onclick="document.getElementById('testimonialFileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleTestimonialDrop(event)">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your photo here</p>
+                    <p class="small-text">or click to browse (optional)</p>
+                    <div id="testimonialPreview"></div>
+                </div>
+                <input type="file" id="testimonialFileInput" accept="image/*" style="display:none" onchange="handleTestimonialFileSelect(this)">
+                <div id="testimonialFileName" class="file-info"></div>
+                <button class="btn-primary" onclick="addTestimonialWithImage()"><i class="fas fa-share-alt"></i> Share Testimonial</button>
             </div>
             <div id="testimonialsList" class="cards-grid" style="grid-template-columns:1fr;"></div>
             <div class="shloka-box"><div class="sanskrit-text">"संतोषः परमं लाभः"</div><p>Contentment is the highest gain. We cherish every devotee's feedback.</p></div>
         </div>
     </div>
 
-    <!-- WALLPAPERS PAGE -->
+    <!-- WALLPAPERS PAGE with Drag & Drop -->
     <div id="wallpapersPage" class="hidden">
-        <section class="hero"><h1>🖼️ Divine Wallpapers 卐</h1><p>Sacred images for spiritual inspiration - Admin can upload</p></section>
+        <section class="hero"><h1>🖼️ Divine Wallpapers 卐</h1><p>Sacred images for spiritual inspiration - Drag & drop to upload</p></section>
         <div class="container">
             <div class="shloka-box"><div class="sanskrit-text">"चित्तं द्रवति भक्त्या हि देवतादर्शनेन च"</div><p>The heart melts with devotion upon seeing divine forms.</p></div>
             <div class="admin-controls">
                 <h3><i class="fas fa-upload"></i> Admin: Add Wallpaper</h3>
                 <input type="text" id="wallpaperTitle" placeholder="Image Title (e.g., Lord Vishnu, Shri Krishna)">
-                <input type="url" id="wallpaperUrl" placeholder="Image URL (from web or upload link)">
-                <button class="btn-primary" onclick="addWallpaper()"><i class="fas fa-plus-circle"></i> Add Wallpaper</button>
-                <p style="font-size:0.8rem; margin-top:10px;"><i class="fas fa-info-circle"></i> Paste image URL from any hosting site. For best results, use direct image links.</p>
+                <div id="wallpaperDropZone" class="drop-zone" onclick="document.getElementById('wallpaperFileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleWallpaperDrop(event)">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your image here</p>
+                    <p class="small-text">or click to browse</p>
+                    <div id="wallpaperPreview"></div>
+                </div>
+                <input type="file" id="wallpaperFileInput" accept="image/*" style="display:none" onchange="handleWallpaperFileSelect(this)">
+                <div id="wallpaperFileName" class="file-info"></div>
+                <button class="btn-primary" onclick="addWallpaperWithImage()"><i class="fas fa-plus-circle"></i> Add Wallpaper</button>
             </div>
             <div id="wallpapersGrid" class="cards-grid"></div>
         </div>
     </div>
 
-    <!-- RECENT PROGRAMS PAGE -->
+    <!-- RECENT PROGRAMS PAGE with Drag & Drop -->
     <div id="programsPage" class="hidden">
         <section class="hero"><h1>📸 Recent Programs & Karyakramas 卐</h1><p>Glimpses of Vedic ceremonies, Homas, and spiritual events</p></section>
         <div class="container">
@@ -570,9 +620,16 @@
                 <h3><i class="fas fa-camera"></i> Admin: Add Program Photo</h3>
                 <input type="text" id="programTitle" placeholder="Event Name (e.g., Satyanarayana Vratam, Upanayanam)">
                 <input type="text" id="programDate" placeholder="Date (e.g., March 2025)">
-                <input type="url" id="programImageUrl" placeholder="Image URL">
                 <textarea id="programDesc" rows="2" placeholder="Brief description of the ceremony..."></textarea>
-                <button class="btn-primary" onclick="addProgram()"><i class="fas fa-save"></i> Add Program Photo</button>
+                <div id="programDropZone" class="drop-zone" onclick="document.getElementById('programFileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleProgramDrop(event)">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your program photo here</p>
+                    <p class="small-text">or click to browse</p>
+                    <div id="programPreview"></div>
+                </div>
+                <input type="file" id="programFileInput" accept="image/*" style="display:none" onchange="handleProgramFileSelect(this)">
+                <div id="programFileName" class="file-info"></div>
+                <button class="btn-primary" onclick="addProgramWithImage()"><i class="fas fa-save"></i> Add Program Photo</button>
             </div>
             <div id="programsGrid" class="cards-grid"></div>
             <div class="shloka-box"><div class="sanskrit-text">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"</div><p>You have a right to perform your prescribed duty, but you are not entitled to the fruits of action. — Bhagavad Gita 2.47</p></div>
@@ -670,7 +727,7 @@
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
         
-        // ======================= VASTU CALCULATION (from with vastu neat) =======================
+        // ======================= VASTU CALCULATION =======================
         const aayaTypes = [
             { name: "ध्वजा (Dhwaja)", meaning: "Flag", effect: "Victory, prosperity, growth", shubh: true, remedy: "No remedy needed. Very auspicious." },
             { name: "धूम्र (Dhoomra)", meaning: "Smoke", effect: "Obstacles, delays in work", shubh: false, remedy: "Perform Ganapati Homa. Install Vastu Yantra." },
@@ -771,23 +828,94 @@
         window.deleteBooking = (id) => { if(confirm('Delete?')) { let b = JSON.parse(localStorage.getItem('purohithBookings')) || []; b = b.filter(i=>i.id !== id); localStorage.setItem('purohithBookings', JSON.stringify(b)); loadDashboard(); } };
         document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('contactName').value; const phone = document.getElementById('contactPhone').value; const msg = document.getElementById('contactMsg').value; window.open(`https://wa.me/918328059590?text=Message%20from%20${name}%20(${phone})%3A%20${encodeURIComponent(msg)}`,'_blank'); alert('Message sent'); e.target.reset(); });
         
-        // ======================= TESTIMONIALS WITH DELETE FUNCTION =======================
+        // ======================= DRAG & DROP VARIABLES =======================
+        let testimonialImageBase64 = null;
+        let wallpaperImageBase64 = null;
+        let programImageBase64 = null;
+        
+        // Drag & Drop Helper Functions
+        function handleDragOver(e) { e.preventDefault(); e.target.closest('.drop-zone')?.classList.add('drag-over'); }
+        function handleDragLeave(e) { e.target.closest('.drop-zone')?.classList.remove('drag-over'); }
+        
+        function handleTestimonialDrop(e) {
+            e.preventDefault();
+            const zone = document.getElementById('testimonialDropZone');
+            zone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if(file && file.type.startsWith('image/')) processTestimonialImage(file);
+            else alert('Please drop an image file');
+        }
+        function handleTestimonialFileSelect(input) { if(input.files[0]) processTestimonialImage(input.files[0]); }
+        function handleWallpaperDrop(e) {
+            e.preventDefault();
+            const zone = document.getElementById('wallpaperDropZone');
+            zone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if(file && file.type.startsWith('image/')) processWallpaperImage(file);
+            else alert('Please drop an image file');
+        }
+        function handleWallpaperFileSelect(input) { if(input.files[0]) processWallpaperImage(input.files[0]); }
+        function handleProgramDrop(e) {
+            e.preventDefault();
+            const zone = document.getElementById('programDropZone');
+            zone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if(file && file.type.startsWith('image/')) processProgramImage(file);
+            else alert('Please drop an image file');
+        }
+        function handleProgramFileSelect(input) { if(input.files[0]) processProgramImage(input.files[0]); }
+        
+        function processTestimonialImage(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                testimonialImageBase64 = e.target.result;
+                const preview = document.getElementById('testimonialPreview');
+                preview.innerHTML = `<img src="${testimonialImageBase64}" class="preview-img" alt="Preview">`;
+                document.getElementById('testimonialFileName').innerHTML = `📷 Selected: ${file.name}`;
+            };
+            reader.readAsDataURL(file);
+        }
+        function processWallpaperImage(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                wallpaperImageBase64 = e.target.result;
+                const preview = document.getElementById('wallpaperPreview');
+                preview.innerHTML = `<img src="${wallpaperImageBase64}" class="preview-img" alt="Preview">`;
+                document.getElementById('wallpaperFileName').innerHTML = `📷 Selected: ${file.name}`;
+            };
+            reader.readAsDataURL(file);
+        }
+        function processProgramImage(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                programImageBase64 = e.target.result;
+                const preview = document.getElementById('programPreview');
+                preview.innerHTML = `<img src="${programImageBase64}" class="preview-img" alt="Preview">`;
+                document.getElementById('programFileName').innerHTML = `📷 Selected: ${file.name}`;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // Testimonials Functions
         function loadTestimonials() {
             let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
             const container = document.getElementById('testimonialsList');
             if(!container) return;
             if(testimonials.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-comment-dots"></i><p>No testimonials yet. Be the first to share your experience!</p></div>'; return; }
-            container.innerHTML = testimonials.map((t, idx) => `<div class="testimonial-item" data-testimonial-idx="${idx}"><i class="fas fa-quote-left" style="color:#FFA500; font-size:1.5rem;"></i><p class="testimonial-text">"${escapeHtml(t.message)}"</p><p class="testimonial-author">— ${escapeHtml(t.name)}</p><small style="color:#999;">${t.date}</small><div><button class="delete-testimonial-btn" onclick="deleteTestimonial(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div></div>`).join('');
+            container.innerHTML = testimonials.map((t, idx) => `<div class="testimonial-item" data-testimonial-idx="${idx}"><i class="fas fa-quote-left" style="color:#FFA500; font-size:1.5rem;"></i><p class="testimonial-text">"${escapeHtml(t.message)}"</p><p class="testimonial-author">— ${escapeHtml(t.name)}</p><small style="color:#999;">${t.date}</small>${t.image ? `<div><img src="${escapeHtml(t.image)}" style="max-width:100%; max-height:150px; border-radius:12px; margin-top:10px;"></div>` : ''}<div><button class="delete-testimonial-btn" onclick="deleteTestimonial(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div></div>`).join('');
         }
-        window.addTestimonial = function() {
+        window.addTestimonialWithImage = function() {
             const name = document.getElementById('testimonialName').value.trim();
             const message = document.getElementById('testimonialMsg').value.trim();
             if(!name || !message) { alert("Please enter your name and testimonial message."); return; }
             let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
-            testimonials.unshift({ name: name, message: message, date: new Date().toLocaleDateString('en-IN') });
+            testimonials.unshift({ name: name, message: message, date: new Date().toLocaleDateString('en-IN'), image: testimonialImageBase64 || null });
             localStorage.setItem('purohithTestimonials', JSON.stringify(testimonials));
             document.getElementById('testimonialName').value = '';
             document.getElementById('testimonialMsg').value = '';
+            document.getElementById('testimonialPreview').innerHTML = '';
+            document.getElementById('testimonialFileName').innerHTML = '';
+            testimonialImageBase64 = null;
             loadTestimonials();
             alert("Thank you for your valuable testimonial! ॐ नमो नारायणाय");
         };
@@ -800,50 +928,59 @@
                 alert("Testimonial deleted successfully.");
             }
         };
+        
+        // Wallpapers Functions
         function loadWallpapers() {
             let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || [];
             const container = document.getElementById('wallpapersGrid');
             if(!container) return;
-            if(wallpapers.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-images"></i><p>No wallpapers uploaded yet. Admin can add divine images.</p></div>'; return; }
-            container.innerHTML = wallpapers.map((w, idx) => `<div class="wallpaper-item"><h3><i class="fas fa-image"></i> ${escapeHtml(w.title)}</h3><img src="${escapeHtml(w.url)}" class="wallpaper-img" alt="${escapeHtml(w.title)}" onclick="window.open('${escapeHtml(w.url)}', '_blank')"><small style="display:block; margin-top:10px;">Added: ${w.date}</small><button class="btn-secondary" style="margin-top:10px; padding:5px 15px;" onclick="deleteWallpaper(${idx})">Delete</button></div>`).join('');
+            if(wallpapers.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-images"></i><p>No wallpapers uploaded yet. Drag & drop images to add divine wallpapers.</p></div>'; return; }
+            container.innerHTML = wallpapers.map((w, idx) => `<div class="wallpaper-item"><h3><i class="fas fa-image"></i> ${escapeHtml(w.title)}</h3><img src="${escapeHtml(w.image)}" class="wallpaper-img" alt="${escapeHtml(w.title)}" onclick="window.open('${escapeHtml(w.image)}', '_blank')"><small style="display:block; margin-top:10px;">Added: ${w.date}</small><button class="delete-wallpaper-btn" onclick="deleteWallpaper(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div>`).join('');
         }
-        window.addWallpaper = function() {
+        window.addWallpaperWithImage = function() {
             const title = document.getElementById('wallpaperTitle').value.trim();
-            const url = document.getElementById('wallpaperUrl').value.trim();
-            if(!title || !url) { alert("Please enter both title and image URL."); return; }
+            if(!title) { alert("Please enter an image title."); return; }
+            if(!wallpaperImageBase64) { alert("Please drag & drop or select an image."); return; }
             let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || [];
-            wallpapers.unshift({ title: title, url: url, date: new Date().toLocaleDateString('en-IN') });
+            wallpapers.unshift({ title: title, image: wallpaperImageBase64, date: new Date().toLocaleDateString('en-IN') });
             localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers));
             document.getElementById('wallpaperTitle').value = '';
-            document.getElementById('wallpaperUrl').value = '';
+            document.getElementById('wallpaperPreview').innerHTML = '';
+            document.getElementById('wallpaperFileName').innerHTML = '';
+            wallpaperImageBase64 = null;
             loadWallpapers();
             alert("Wallpaper added successfully! ॐ श्री विष्णवे नमः");
         };
         window.deleteWallpaper = function(index) { let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || []; wallpapers.splice(index, 1); localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers)); loadWallpapers(); };
+        
+        // Programs Functions
         function loadPrograms() {
             let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || [];
             const container = document.getElementById('programsGrid');
             if(!container) return;
-            if(programs.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-camera"></i><p>No program photos uploaded yet. Admin can add recent karyakramas.</p></div>'; return; }
-            container.innerHTML = programs.map((p, idx) => `<div class="program-item"><h3><i class="fas fa-calendar-alt"></i> ${escapeHtml(p.title)}</h3><p><strong>📅 ${escapeHtml(p.date)}</strong></p><img src="${escapeHtml(p.imageUrl)}" class="wallpaper-img" alt="${escapeHtml(p.title)}" onclick="window.open('${escapeHtml(p.imageUrl)}', '_blank')"><p style="margin-top:10px;">${escapeHtml(p.description)}</p><button class="btn-secondary" style="margin-top:10px; padding:5px 15px;" onclick="deleteProgram(${idx})">Delete</button></div>`).join('');
+            if(programs.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-camera"></i><p>No program photos uploaded yet. Drag & drop images to add recent karyakramas.</p></div>'; return; }
+            container.innerHTML = programs.map((p, idx) => `<div class="program-item"><h3><i class="fas fa-calendar-alt"></i> ${escapeHtml(p.title)}</h3><p><strong>📅 ${escapeHtml(p.date || 'Recent')}</strong></p><img src="${escapeHtml(p.image)}" class="wallpaper-img" alt="${escapeHtml(p.title)}" onclick="window.open('${escapeHtml(p.image)}', '_blank')"><p style="margin-top:10px;">${escapeHtml(p.description || 'Vedic ceremony performed with Vedic chanting')}</p><button class="delete-program-btn" onclick="deleteProgram(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div>`).join('');
         }
-        window.addProgram = function() {
+        window.addProgramWithImage = function() {
             const title = document.getElementById('programTitle').value.trim();
             const date = document.getElementById('programDate').value.trim();
-            const imageUrl = document.getElementById('programImageUrl').value.trim();
             const description = document.getElementById('programDesc').value.trim();
-            if(!title || !imageUrl) { alert("Please enter event name and image URL."); return; }
+            if(!title) { alert("Please enter event name."); return; }
+            if(!programImageBase64) { alert("Please drag & drop or select a program photo."); return; }
             let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || [];
-            programs.unshift({ title: title, date: date || "Recent", imageUrl: imageUrl, description: description || "Vedic ceremony performed with Vedic chanting", addedDate: new Date().toLocaleDateString('en-IN') });
+            programs.unshift({ title: title, date: date || "Recent", image: programImageBase64, description: description || "Vedic ceremony performed with Vedic chanting", addedDate: new Date().toLocaleDateString('en-IN') });
             localStorage.setItem('purohithPrograms', JSON.stringify(programs));
             document.getElementById('programTitle').value = '';
             document.getElementById('programDate').value = '';
-            document.getElementById('programImageUrl').value = '';
             document.getElementById('programDesc').value = '';
+            document.getElementById('programPreview').innerHTML = '';
+            document.getElementById('programFileName').innerHTML = '';
+            programImageBase64 = null;
             loadPrograms();
             alert("Program photo added successfully! ॐ नमो भगवते वासुदेवाय");
         };
         window.deleteProgram = function(index) { let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || []; programs.splice(index, 1); localStorage.setItem('purohithPrograms', JSON.stringify(programs)); loadPrograms(); };
+        
         function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
         
         window.showPage = function(pageName) {
@@ -859,23 +996,23 @@
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
         if(document.getElementById('date')) { let d = new Date(); d.setDate(d.getDate()+7); document.getElementById('date').min = d.toISOString().split('T')[0]; }
         
-        // Initialize with sample data
+        // Initialize with sample data - updating to use base64 for wallpapers
         if(!localStorage.getItem('purohithTestimonials')) {
             localStorage.setItem('purohithTestimonials', JSON.stringify([
-                { name: "Rajesh Sharma", message: "The Upanayanam ceremony was conducted with utmost Vedic precision. The priests were knowledgeable and punctual. Highly recommended!", date: "15 Mar 2025" },
-                { name: "Lakshmi Priya", message: "Carnatic music classes are wonderful. My daughter has improved tremendously. Guru's guidance is exceptional.", date: "20 Feb 2025" }
+                { name: "Rajesh Sharma", message: "The Upanayanam ceremony was conducted with utmost Vedic precision. The priests were knowledgeable and punctual. Highly recommended!", date: "15 Mar 2025", image: null },
+                { name: "Lakshmi Priya", message: "Carnatic music classes are wonderful. My daughter has improved tremendously. Guru's guidance is exceptional.", date: "20 Feb 2025", image: null }
             ]));
         }
         if(!localStorage.getItem('purohithWallpapers')) {
             localStorage.setItem('purohithWallpapers', JSON.stringify([
-                { title: "Lord Vishnu", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vishnu_Lakshmi.jpg/800px-Vishnu_Lakshmi.jpg", date: "1 Jan 2025" },
-                { title: "Shri Krishna", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Krishna_with_flute.jpg/800px-Krishna_with_flute.jpg", date: "1 Jan 2025" }
+                { title: "Lord Vishnu", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vishnu_Lakshmi.jpg/800px-Vishnu_Lakshmi.jpg", date: "1 Jan 2025" },
+                { title: "Shri Krishna", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Krishna_with_flute.jpg/800px-Krishna_with_flute.jpg", date: "1 Jan 2025" }
             ]));
         }
         if(!localStorage.getItem('purohithPrograms')) {
             localStorage.setItem('purohithPrograms', JSON.stringify([
-                { title: "Satyanarayana Vratam", date: "March 2025", imageUrl: "https://images.pexels.com/photos/1070350/pexels-photo-1070350.jpeg", description: "Performed at Devotee's residence with full rituals", addedDate: "10 Mar 2025" },
-                { title: "Gau Pooja & Havan", date: "February 2025", imageUrl: "https://images.pexels.com/photos/219996/pexels-photo-219996.jpeg", description: "Special Gau Seva event at the goshala", addedDate: "15 Feb 2025" }
+                { title: "Satyanarayana Vratam", date: "March 2025", image: "https://images.pexels.com/photos/1070350/pexels-photo-1070350.jpeg", description: "Performed at Devotee's residence with full rituals", addedDate: "10 Mar 2025" },
+                { title: "Gau Pooja & Havan", date: "February 2025", image: "https://images.pexels.com/photos/219996/pexels-photo-219996.jpeg", description: "Special Gau Seva event at the goshala", addedDate: "15 Feb 2025" }
             ]));
         }
         

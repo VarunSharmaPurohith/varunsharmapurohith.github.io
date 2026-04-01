@@ -103,6 +103,7 @@
         .mantra-chant { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; background: #8B4513; color: #FFD700; padding: 12px; border-radius: 50px; text-align: center; margin-top: 15px; }
         .upi-container { background: white; padding: 25px; border-radius: 25px; margin-top: 20px; text-align: center; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #444; }
+        .vastu-value { font-weight: 600; color: #8B4513; }
     </style>
 </head>
 <body>
@@ -137,7 +138,7 @@
     <!-- HOROSCOPE PAGE -->
     <div id="horoscopePage" class="hidden"><section class="hero"><h1>⭐ Rashi Phala & Vedic Astrology 卐</h1><p>Select your Rashi for today's prediction, remedies & Vishnu mantras</p></section><div class="container"><div id="rashiDynamicGrid" class="rashi-zodiac-grid"></div><div id="horoscopeResult" class="horoscope-result-card"><div style="text-align:center; opacity:0.8;"><i class="fas fa-star-of-life" style="font-size:3rem; color:#FFD700;"></i><p>🌙 Click on your Rashi to receive personalized guidance, planetary remedies and powerful Vishnu shlokas.</p></div></div></div></div>
 
-    <!-- VASTU PAGE -->
+    <!-- VASTU PAGE - COMPLETE WITH FULL TABULAR DATA -->
     <div id="vastuPage" class="hidden"><section class="hero"><h1>🏠 Vastu Consultation & Aaya Calculation 卐</h1><p>Harmonize your living spaces with ancient Vedic science | Length & Breadth based analysis</p></section><div class="container"><div class="aaya-calc-card"><h2 style="color:#8B4513; text-align:center; margin-bottom:20px;"><i class="fas fa-ruler-combined"></i> Vastu Aaya Calculator</h2><p style="text-align:center; margin-bottom:25px;">Enter the length and breadth of your property (in feet) to get comprehensive Vastu analysis including Aaya, Nakshatra, Yoga, Graha, and more as per ancient Vedic texts.</p><div class="aaya-input-group"><input type="number" id="lengthInput" placeholder="Length (in feet)" step="any" value="30"><input type="number" id="breadthInput" placeholder="Breadth (in feet)" step="any" value="20"><button class="btn-primary" onclick="calculateVastuAaya()"><i class="fas fa-calculator"></i> Calculate</button></div><div id="aayaResultArea" style="margin-top:25px;"></div><div class="shloka-box" style="margin-top:30px;"><div class="sanskrit-text">"आयादिषड्विधं ज्ञेयं वास्तुमानं शुभाशुभम्। आयश्च व्यय एवं च नक्षत्रं योनिरेव च॥"</div><p>🏛️ The measurement of a building determines Aaya (income), Vyaya (expenditure), Nakshatra, Yoni, and other factors. Proper dimensions bring prosperity and harmony.</p></div><div style="background:#f9f2e6; border-radius:24px; padding:20px; margin-top:20px;"><h3><i class="fas fa-chalkboard-teacher"></i> Expert Vastu Consultation</h3><p>For personalized Vastu remedies, site analysis, and dosha corrections, book a consultation with our certified Vastu Acharya.</p><button onclick="showPage('booking')" class="btn-primary" style="margin-top:12px;">📞 Book Vastu Consultation</button></div></div></div></div>
 
     <!-- GAUSEVA PAGE -->
@@ -206,10 +207,79 @@
         
         window.showAnimatedHoroscope = (rashiName) => { const rashi = rashisData.find(r => r.name === rashiName); if(!rashi) return; document.querySelectorAll('.rashi-card').forEach(card => card.classList.remove('active-rashi')); const selectedCard = document.querySelector(`.rashi-card[data-rashi="${rashiName}"]`); if(selectedCard) selectedCard.classList.add('active-rashi'); const resultDiv = document.getElementById('horoscopeResult'); resultDiv.style.animation = 'none'; setTimeout(() => resultDiv.style.animation = 'fadeSlideUp 0.5s ease-out', 10); resultDiv.innerHTML = `<div class="rashi-result-header"><div class="rashi-result-symbol">${rashi.symbol}</div><div class="rashi-result-title"><h2>${rashi.name} Rashi <span style="font-size:1rem;">(${rashi.lord})</span></h2><p><i class="fas fa-globe-asia"></i> Element: ${rashi.element} | Color: ${rashi.color}</p></div></div><div class="shloka-box" style="margin:0 0 20px 0;"><div class="sanskrit-text">✨ Daily Phala ✨</div><p>${rashi.prediction}</p></div><div class="remedy-box"><i class="fas fa-praying-hands"></i> <strong>Vedic Remedy:</strong> ${rashi.remedy}</div><div class="mantra-chant"><i class="fas fa-om"></i> Chant this mantra: ${rashi.mantra}</div><div style="margin-top:25px; text-align:center;"><button onclick="showPage('booking')" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Astrology Consultation</button></div>`; resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
         
-        // Vastu Calculation
-        const aayaTypes = [{ name: "ध्वजा (Dhwaja)", effect: "Victory, prosperity", shubh: true, remedy: "No remedy needed" },{ name: "धूम्र (Dhoomra)", effect: "Obstacles", shubh: false, remedy: "Perform Ganapati Homa" },{ name: "सिंह (Simha)", effect: "Courage, authority", shubh: true, remedy: "No remedy needed" },{ name: "श्वा (Shva)", effect: "Strife, quarrels", shubh: false, remedy: "Chant Vishnu Sahasranama" },{ name: "वृषभ (Vrishabha)", effect: "Stability, wealth", shubh: true, remedy: "No remedy needed" },{ name: "खर (Khara)", effect: "Hard work without results", shubh: false, remedy: "Donate black sesame" },{ name: "गज (Gaja)", effect: "Royal status, wisdom", shubh: true, remedy: "No remedy needed" },{ name: "काक (Kaka)", effect: "Loss, conflicts", shubh: false, remedy: "Feed crows daily" }];
+        // VASTU CALCULATION - COMPLETE WITH FULL TABULAR DATA
+        const aayaTypes = [
+            { name: "ध्वजा (Dhwaja)", meaning: "Flag", effect: "Victory, prosperity, growth", shubh: true, remedy: "No remedy needed. Very auspicious." },
+            { name: "धूम्र (Dhoomra)", meaning: "Smoke", effect: "Obstacles, delays in work", shubh: false, remedy: "Perform Ganapati Homa. Install Vastu Yantra." },
+            { name: "सिंह (Simha)", meaning: "Lion", effect: "Courage, authority, leadership", shubh: true, remedy: "No remedy needed. Excellent for leaders." },
+            { name: "श्वा (Shva)", meaning: "Dog", effect: "Strife, quarrels, instability", shubh: false, remedy: "Chant Vishnu Sahasranama. Keep peacock feather." },
+            { name: "वृषभ (Vrishabha)", meaning: "Bull", effect: "Stability, wealth, agriculture", shubh: true, remedy: "No remedy needed. Brings steady income." },
+            { name: "खर (Khara)", meaning: "Donkey", effect: "Hard work without results", shubh: false, remedy: "Donate black sesame. Light ghee lamp daily." },
+            { name: "गज (Gaja)", meaning: "Elephant", effect: "Royal status, wisdom, longevity", shubh: true, remedy: "No remedy needed. Highly auspicious." },
+            { name: "काक (Kaka)", meaning: "Crow", effect: "Loss, conflicts, health issues", shubh: false, remedy: "Feed crows daily. Perform Shanti Homa." }
+        ];
+        const nakshatraNames = ["Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishtha", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"];
+        const grahaNames = ["Surya (Sun)", "Chandra (Moon)", "Mangala (Mars)", "Budha (Mercury)", "Guru (Jupiter)", "Shukra (Venus)", "Shani (Saturn)", "Rahu", "Ketu"];
+        const yogaNames = ["Vishkumbha", "Priti", "Ayushman", "Saubhagya", "Shobhana", "Atiganda", "Sukarma", "Dhriti", "Shoola", "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra", "Siddhi", "Vyatipata", "Variyana", "Parigha", "Shiva", "Siddha", "Sadhya", "Shubha", "Shukla", "Brahma", "Indra", "Vaidhriti"];
+        const weekDays = ["Ravivar (Sunday)", "Somvar (Monday)", "Mangalvar (Tuesday)", "Budhvar (Wednesday)", "Guruvar (Thursday)", "Shukravar (Friday)", "Shanivar (Saturday)"];
+        const lagnaNames = ["Mesha", "Vrishabha", "Mithuna", "Karka", "Simha", "Kanya", "Tula", "Vrishchika", "Dhanu", "Makara", "Kumbha", "Meena"];
+        const kulaTypes = ["Deva Kula (Divine) - Spiritual Growth", "Manushya Kula (Human) - Balanced Life", "Rakshasa Kula (Protective) - Strong Will"];
+        const kalaTypes = ["Shubha Kala (Auspicious Time)", "Madhya Kala (Neutral Time)", "Ashubha Kala (Inauspicious Time - Remedies Recommended)"];
         
-        window.calculateVastuAaya = function() { let length = parseFloat(document.getElementById('lengthInput').value) || 30; let breadth = parseFloat(document.getElementById('breadthInput').value) || 20; let sum = length + breadth; let aayaIndex = Math.floor((sum * 8) % 8); let aayaResult = aayaTypes[aayaIndex]; let resultHTML = `<h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3><p style="text-align:center;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft</p><table class="aaya-table"><tr><th>Parameter</th><th>Result</th></tr><tr><td><strong>🪔 Aaya (Main)</strong></td><td>${aayaResult.name} - ${aayaResult.effect}</td></tr><tr><td><strong>Auspiciousness</strong></td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings prosperity' : '🔴 Needs Remedial Action'}</td></tr></table><div class="remedy-suggestion"><h4><i class="fas fa-praying-hands"></i> Recommended Remedy</h4><p>${aayaResult.remedy}</p></div><div class="${aayaResult.shubh ? 'shubh' : 'ashubh'} result-badge">${aayaResult.shubh ? '✓ Auspicious Dimensions' : '⚠️ Vastu Correction Recommended'}</div><button class="btn-primary" onclick="showPage('booking')" style="margin-top:20px;">Book Expert Vastu Consultation</button>`; document.getElementById('aayaResultArea').innerHTML = resultHTML; };
+        window.calculateVastuAaya = function() {
+            let length = parseFloat(document.getElementById('lengthInput').value);
+            let breadth = parseFloat(document.getElementById('breadthInput').value);
+            if(isNaN(length) || isNaN(breadth) || length <= 0 || breadth <= 0){ alert("Please enter valid positive numbers for length and breadth."); return; }
+            let area = length * breadth;
+            let perimeter = 2 * (length + breadth);
+            let sum = length + breadth;
+            let aayaRaw = (sum * 8) % 8;
+            let aayaIndex = Math.floor(aayaRaw);
+            let aayaResult = aayaTypes[aayaIndex];
+            let creditValue = Math.floor((sum * 123.456) % 9) + 1;
+            let creditStatus = creditValue <= 5 ? "शुभ - Prosperity" : "अशुभ - Needs Attention";
+            let debitValue = Math.floor((perimeter * 78.901) % 9) + 1;
+            let debitStatus = debitValue <= 5 ? "शुभ - Controlled Expenses" : "अशुभ - High Expenditure";
+            let weekIndex = Math.floor((sum * 19.357) % 7);
+            let weekDay = weekDays[weekIndex];
+            let tithiIndex = Math.floor((area * Math.PI * 10) % 30);
+            let tithiName = tithiNamesFull[tithiIndex];
+            let tithiPaksha = tithiIndex < 15 ? "Shukla Paksha (Waxing Moon)" : "Krishna Paksha (Waning Moon)";
+            let propertyTypes = ["Eshanya (NE) - Divine Zone", "Purva (East) - Energy of Rising Sun", "Agneya (SE) - Fire Element", "Dakshina (South) - Yama's Direction", "Nairutya (SW) - Stability Zone", "Pashchima (West) - Setting Sun Energy", "Vayavya (NW) - Air Element", "Uttara (North) - Kubera's Direction", "Brahmasthana (Center) - Heart of Property"];
+            let propertyIndex = Math.floor((area * 2.718) % 9);
+            let property = propertyTypes[propertyIndex];
+            let lagnaIndex = Math.floor((length * 1.618 * 10) % 12);
+            let lagna = lagnaNames[lagnaIndex];
+            let yogaIndex = Math.floor((Math.sqrt(sum) * 27) % 27);
+            let yoga = yogaNames[yogaIndex];
+            let grahaIndex = Math.floor((Math.cbrt(breadth) * 9) % 9);
+            let graha = grahaNames[grahaIndex];
+            let kulaIndex = Math.floor((area * 0.333) % 3);
+            let kula = kulaTypes[kulaIndex];
+            let kalaIndex = Math.floor((perimeter * 0.618) % 3);
+            let kala = kalaTypes[kalaIndex];
+            let nakshatraIndex = Math.floor((area * Math.E * 10) % 27);
+            let nakshatra = nakshatraNames[nakshatraIndex];
+            let auspiciousCount = (aayaResult.shubh?1:0) + (creditValue<=5?1:0) + (debitValue<=5?1:0) + (kalaIndex===0?1:0);
+            let overallVerdict = auspiciousCount >= 3 ? '<div class="result-badge shubh"><i class="fas fa-check-circle"></i> Overall Vastu Assessment: FAVOURABLE - These dimensions bring prosperity, health, and harmony.</div>' : '<div class="result-badge ashubh"><i class="fas fa-exclamation-triangle"></i> Overall Vastu Assessment: NEEDS REMEDY - Please see recommended remedies below.</div>';
+            let remedyText = aayaResult.shubh ? "Your property dimensions are largely auspicious. Maintain positive energy by regular Vastu Pooja." : aayaResult.remedy;
+            let resultHTML = `<h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3><p style="text-align:center; margin-bottom:15px;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft | Area = ${area.toFixed(2)} sq ft</p><table class="aaya-table"><thead><tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th></tr></thead><tbody>
+                    <tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr>
+                    <tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr>
+                    <tr><td><strong>💰 Credit (Aaya)</strong></td><td class="vastu-value">${creditValue} - ${creditStatus}</td><td>Represents income and inflow of wealth</td></tr>
+                    <tr><td><strong>💸 Debit (Vyaya)</strong></td><td class="vastu-value">${debitValue} - ${debitStatus}</td><td>Represents expenditure and outflow</td></tr>
+                    <tr><td><strong>📅 Week Day</strong></td><td class="vastu-value">${weekDay}</td><td>Associated planetary energy for the property</td></tr>
+                    <tr><td><strong>🌙 Tithi</strong></td><td class="vastu-value">${tithiName} (${tithiPaksha})</td><td>Lunar day influence on the dwelling</td></tr>
+                    <tr><td><strong>🏛️ Property Zone</strong></td><td class="vastu-value">${property}</td><td>Dominant Vastu Purusha zone</td></tr>
+                    <tr><td><strong>⭐ Lagna</strong></td><td class="vastu-value">${lagna}</td><td>Ascendant influence on property energy</td></tr>
+                    <tr><td><strong>🕉️ Yoga</strong></td><td class="vastu-value">${yoga}</td><td>Combined planetary influence</td></tr>
+                    <tr><td><strong>🌍 Graha (Planet)</strong></td><td class="vastu-value">${graha}</td><td>Ruling planet for these dimensions</td></tr>
+                    <tr><td><strong>👨‍👩‍👧‍👦 Kula</strong></td><td class="vastu-value">${kula}</td><td>Family/lineage energy type</td></tr>
+                    <tr><td><strong>⏰ Kala</strong></td><td class="vastu-value">${kala}</td><td>Temporal effect on residents</td></tr>
+                    <tr><td><strong>✨ Nakshatra</strong></td><td class="vastu-value">${nakshatra}</td><td>Lunar mansion influence</td></tr>
+                </tbody></table><div class="remedy-suggestion"><h4><i class="fas fa-praying-hands"></i> Vedic Remedies & Recommendations</h4><p>${remedyText}</p>${!aayaResult.shubh ? `<p><strong>Specific Remedy for ${aayaResult.name}:</strong> ${aayaResult.remedy}</p>` : ''}<p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free.</p></div>${overallVerdict}`;
+            document.getElementById('aayaResultArea').innerHTML = resultHTML;
+        };
         
         // Booking & Dashboard Functions
         window.donateAmount = (amt, purpose) => { window.open(`https://wa.me/918328059590?text=I%20want%20to%20donate%20₹${amt}%20for%20${purpose}%20UPI%20aryanvaruna@oksbi`, '_blank'); };

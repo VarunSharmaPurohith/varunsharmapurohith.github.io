@@ -379,6 +379,27 @@
         .ashubh { background: #ffe6e6; color: #c62828; border-left: 4px solid #c62828; }
         .vastu-value { font-weight: 600; color: #8B4513; }
         .remedy-suggestion { background: #fff0e0; border-radius: 20px; padding: 20px; margin-top: 20px; }
+        
+        /* ========== NEW STYLES FOR TESTIMONIALS, WALLPAPERS, PROGRAMS ========== */
+        .testimonial-item, .wallpaper-item, .program-item {
+            background: white;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .testimonial-item:hover, .wallpaper-item:hover, .program-item:hover { transform: translateY(-5px); }
+        .testimonial-text { font-style: italic; color: #5a3e2e; margin: 10px 0; }
+        .testimonial-author { font-weight: bold; color: #8B4513; text-align: right; }
+        .wallpaper-img { width: 100%; border-radius: 20px; margin-top: 15px; cursor: pointer; transition: 0.3s; }
+        .wallpaper-img:hover { opacity: 0.9; transform: scale(1.02); }
+        .admin-controls { background: #f9f2e6; padding: 20px; border-radius: 24px; margin-bottom: 30px; }
+        .admin-controls input, .admin-controls textarea { width: 100%; padding: 12px; margin: 8px 0; border-radius: 40px; border: 1px solid #e0c8a8; }
+        .admin-controls textarea { border-radius: 20px; resize: vertical; }
+        .delete-testimonial-btn { background-color: #c62828; color: white; border: none; border-radius: 30px; padding: 5px 15px; font-size: 0.8rem; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .delete-testimonial-btn:hover { background-color: #8b0000; transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -403,6 +424,9 @@
                     <li><a onclick="showPage('donation')">❤️ Donate</a></li>
                     <li><a onclick="showPage('booking')">📅 Book</a></li>
                     <li><a onclick="showPage('dashboard')">📊 Dashboard</a></li>
+                    <li><a onclick="showPage('testimonials')">📝 Testimonials</a></li>
+                    <li><a onclick="showPage('wallpapers')">🖼️ Wallpapers</a></li>
+                    <li><a onclick="showPage('programs')">📸 Recent Programs</a></li>
                     <li><a onclick="showPage('contact')">📞 Contact</a></li>
                 </ul>
                 <div class="mobile-menu" onclick="toggleMenu()">☰</div>
@@ -505,6 +529,56 @@
     <!-- DASHBOARD PAGE -->
     <div id="dashboardPage" class="hidden"><section class="hero"><h1>📊 Booking Dashboard 卐</h1><p>Manage all client bookings & orders</p></section><div class="container"><div class="cards-grid" style="grid-template-columns:repeat(3,1fr)"><div class="card"><h3>📋 Total Bookings</h3><h2 id="totalBookings">0</h2></div><div class="card"><h3>⏳ Pending</h3><h2 id="pendingBookings">0</h2></div><div class="card"><h3>👥 Unique Clients</h3><h2 id="uniqueClients">0</h2></div></div><div id="bookingsList"></div><button class="btn-primary" onclick="loadDashboard()"><i class="fas fa-sync-alt"></i> Refresh</button></div></div>
 
+    <!-- TESTIMONIALS PAGE with Delete Function -->
+    <div id="testimonialsPage" class="hidden">
+        <section class="hero"><h1>📝 Devotee Testimonials 卐</h1><p>Share your spiritual experiences and feedback</p></section>
+        <div class="container">
+            <div class="shloka-box"><div class="sanskrit-text">"सत्यमेव जयते नानृतम्" — मुण्डकोपनिषद्</div><p>Truth alone triumphs. Share your honest experiences with our services.</p></div>
+            <div class="admin-controls">
+                <h3><i class="fas fa-pen-alt"></i> Add Your Testimonial</h3>
+                <input type="text" id="testimonialName" placeholder="Your Name *">
+                <textarea id="testimonialMsg" rows="3" placeholder="Your experience with our services, rituals, or products... *"></textarea>
+                <button class="btn-primary" onclick="addTestimonial()"><i class="fas fa-share-alt"></i> Share Testimonial</button>
+            </div>
+            <div id="testimonialsList" class="cards-grid" style="grid-template-columns:1fr;"></div>
+            <div class="shloka-box"><div class="sanskrit-text">"संतोषः परमं लाभः"</div><p>Contentment is the highest gain. We cherish every devotee's feedback.</p></div>
+        </div>
+    </div>
+
+    <!-- WALLPAPERS PAGE -->
+    <div id="wallpapersPage" class="hidden">
+        <section class="hero"><h1>🖼️ Divine Wallpapers 卐</h1><p>Sacred images for spiritual inspiration - Admin can upload</p></section>
+        <div class="container">
+            <div class="shloka-box"><div class="sanskrit-text">"चित्तं द्रवति भक्त्या हि देवतादर्शनेन च"</div><p>The heart melts with devotion upon seeing divine forms.</p></div>
+            <div class="admin-controls">
+                <h3><i class="fas fa-upload"></i> Admin: Add Wallpaper</h3>
+                <input type="text" id="wallpaperTitle" placeholder="Image Title (e.g., Lord Vishnu, Shri Krishna)">
+                <input type="url" id="wallpaperUrl" placeholder="Image URL (from web or upload link)">
+                <button class="btn-primary" onclick="addWallpaper()"><i class="fas fa-plus-circle"></i> Add Wallpaper</button>
+                <p style="font-size:0.8rem; margin-top:10px;"><i class="fas fa-info-circle"></i> Paste image URL from any hosting site. For best results, use direct image links.</p>
+            </div>
+            <div id="wallpapersGrid" class="cards-grid"></div>
+        </div>
+    </div>
+
+    <!-- RECENT PROGRAMS PAGE -->
+    <div id="programsPage" class="hidden">
+        <section class="hero"><h1>📸 Recent Programs & Karyakramas 卐</h1><p>Glimpses of Vedic ceremonies, Homas, and spiritual events</p></section>
+        <div class="container">
+            <div class="shloka-box"><div class="sanskrit-text">"यज्ञो वै श्रेष्ठतमं कर्म"</div><p>Yajna (sacred ceremony) is the highest action. Witness our recent Vedic events.</p></div>
+            <div class="admin-controls">
+                <h3><i class="fas fa-camera"></i> Admin: Add Program Photo</h3>
+                <input type="text" id="programTitle" placeholder="Event Name (e.g., Satyanarayana Vratam, Upanayanam)">
+                <input type="text" id="programDate" placeholder="Date (e.g., March 2025)">
+                <input type="url" id="programImageUrl" placeholder="Image URL">
+                <textarea id="programDesc" rows="2" placeholder="Brief description of the ceremony..."></textarea>
+                <button class="btn-primary" onclick="addProgram()"><i class="fas fa-save"></i> Add Program Photo</button>
+            </div>
+            <div id="programsGrid" class="cards-grid"></div>
+            <div class="shloka-box"><div class="sanskrit-text">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन"</div><p>You have a right to perform your prescribed duty, but you are not entitled to the fruits of action. — Bhagavad Gita 2.47</p></div>
+        </div>
+    </div>
+
     <!-- CONTACT PAGE -->
     <div id="contactPage" class="hidden"><section class="hero"><h1>📞 Contact Us 卐</h1><p>Get in touch for rituals, classes, horoscope, GauSeva & cow products</p></section><div class="container"><div class="cards-grid"><div class="card"><i class="fas fa-phone-alt"></i><h3>Call / WhatsApp</h3><p>+91 83280 59590<br>+91 94401 75900</p><p><i class="fas fa-envelope"></i> aryanvaruna@gmail.com</p><div class="social-links"><a href="https://wa.me/918328059590" class="whatsapp-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat Now</a></div></div><form id="contactForm" style="background:white; padding:30px; border-radius:30px"><h3>✉️ Send a Message</h3><input type="text" id="contactName" placeholder="Your Name" required style="width:100%; padding:12px; margin:10px 0; border-radius:40px"><input type="tel" id="contactPhone" placeholder="Phone" required style="width:100%; padding:12px; margin:10px 0; border-radius:40px"><textarea id="contactMsg" rows="4" placeholder="Your message..." required style="width:100%; padding:12px; border-radius:20px"></textarea><button type="submit" class="btn-primary">📧 Send via WhatsApp</button></form></div></div></div>
 
@@ -512,7 +586,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section"><h3>🕉️ Purohith Services 卐 🐄</h3><p>Preserving Vedic traditions, music and spiritual wisdom. Brahmin & Gau importance: As per scriptures, serving cows (Gau Seva) and respecting Brahmins brings immense spiritual merit.</p></div>
-                <div class="footer-section"><h4>🔗 Quick Links</h4><a onclick="showPage('home')">🏠 Home</a><a onclick="showPage('gita')">📖 Bhagavad Gita Shlokas</a><a onclick="showPage('gauseva')">🐄 GauSeva</a><a onclick="showPage('gauproducts')">🪔 Cow Dung & Goumutra</a><a onclick="showPage('donation')">❤️ Donate</a><a onclick="showPage('horoscope')">⭐ Horoscope</a><a onclick="showPage('vastu')">🏠 Vastu Consultation</a></div>
+                <div class="footer-section"><h4>🔗 Quick Links</h4><a onclick="showPage('home')">🏠 Home</a><a onclick="showPage('gita')">📖 Bhagavad Gita Shlokas</a><a onclick="showPage('gauseva')">🐄 GauSeva</a><a onclick="showPage('gauproducts')">🪔 Cow Dung & Goumutra</a><a onclick="showPage('donation')">❤️ Donate</a><a onclick="showPage('horoscope')">⭐ Horoscope</a><a onclick="showPage('vastu')">🏠 Vastu Consultation</a><a onclick="showPage('testimonials')">📝 Testimonials</a><a onclick="showPage('programs')">📸 Recent Programs</a></div>
                 <div class="footer-section"><h4>🕉️ Vishnu Mantra</h4><p class="sanskrit-text">"शान्ताकारं भुजगशयनं पद्मनाभं सुरेशम्"</p><p>Lord Vishnu is the preserver. Chanting Vishnu Sahasranama grants peace and liberation.</p></div>
             </div>
             <div class="footer-bottom"><p>ॐ श्री विष्णवे नमः | ॐ नमो भगवते वासुदेवाय | © 2025 Purohith Services | All rituals performed with Vedic purity</p></div>
@@ -593,7 +667,6 @@
             resultDiv.style.animation = 'none';
             setTimeout(() => resultDiv.style.animation = 'fadeSlideUp 0.5s ease-out', 10);
             resultDiv.innerHTML = `<div class="rashi-result-header"><div class="rashi-result-symbol">${rashi.symbol}</div><div class="rashi-result-title"><h2>${rashi.name} Rashi <span style="font-size:1rem;">(${rashi.lord})</span></h2><p><i class="fas fa-globe-asia"></i> Element: ${rashi.element} | Color: ${rashi.color}</p></div></div><div class="shloka-box" style="margin:0 0 20px 0;"><div class="sanskrit-text">✨ Daily Phala ✨</div><p>${rashi.prediction}</p></div><div class="remedy-box"><i class="fas fa-praying-hands"></i> <strong>Vedic Remedy:</strong> ${rashi.remedy}</div><div class="mantra-chant"><i class="fas fa-om"></i> Chant this mantra: ${rashi.mantra}</div><div style="margin-top:25px; text-align:center;"><button onclick="showPage('booking')" class="btn-primary"><i class="fas fa-calendar-check"></i> Book Astrology Consultation</button></div>`;
-            // Smooth scroll to the horoscope result section so user sees the mantra and info
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
         
@@ -653,7 +726,21 @@
             let auspiciousCount = (aayaResult.shubh?1:0) + (creditValue<=5?1:0) + (debitValue<=5?1:0) + (kalaIndex===0?1:0);
             let overallVerdict = auspiciousCount >= 3 ? '<div class="result-badge shubh"><i class="fas fa-check-circle"></i> Overall Vastu Assessment: FAVOURABLE - These dimensions bring prosperity, health, and harmony.</div>' : '<div class="result-badge ashubh"><i class="fas fa-exclamation-triangle"></i> Overall Vastu Assessment: NEEDS REMEDY - Please see recommended remedies below.</div>';
             let remedyText = aayaResult.shubh ? "Your property dimensions are largely auspicious. Maintain positive energy by regular Vastu Pooja." : aayaResult.remedy;
-            let resultHTML = `<h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3><p style="text-align:center; margin-bottom:15px;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft | Area = ${area.toFixed(2)} sq ft</p><table class="aaya-table"><thead><tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th> </tr></thead><tbody><tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr><tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr><tr><td><strong>💰 Credit (Aaya)</strong></td><td class="vastu-value">${creditValue} - ${creditStatus}</td><td>Represents income and inflow of wealth</td></tr><tr><td><strong>💸 Debit (Vyaya)</strong></td><td class="vastu-value">${debitValue} - ${debitStatus}</td><td>Represents expenditure and outflow</td></tr><tr><td><strong>📅 Week Day</strong></td><td class="vastu-value">${weekDay}</td><td>Associated planetary energy for the property</td></tr><tr><td><strong>🌙 Tithi</strong></td><td class="vastu-value">${tithiName} (${tithiPaksha})</td><td>Lunar day influence on the dwelling</td></tr><tr><td><strong>🏛️ Property Zone</strong></td><td class="vastu-value">${property}</td><td>Dominant Vastu Purusha zone</td></tr><tr><td><strong>⭐ Lagna</strong></td><td class="vastu-value">${lagna}</td><td>Ascendant influence on property energy</td></tr><tr><td><strong>🕉️ Yoga</strong></td><td class="vastu-value">${yoga}</td><td>Combined planetary influence</td></tr><tr><td><strong>🌍 Graha (Planet)</strong></td><td class="vastu-value">${graha}</td><td>Ruling planet for these dimensions</td></tr><tr><td><strong>👨‍👩‍👧‍👦 Kula</strong></td><td class="vastu-value">${kula}</td><td>Family/lineage energy type</td></tr><tr><td><strong>⏰ Kala</strong></td><td class="vastu-value">${kala}</td><td>Temporal effect on residents</td></tr><tr><td><strong>✨ Nakshatra</strong></td><td class="vastu-value">${nakshatra}</td><td>Lunar mansion influence</td></tr></tbody></table><div class="remedy-suggestion"><h4><i class="fas fa-praying-hands"></i> Vedic Remedies & Recommendations</h4><p>${remedyText}</p>${!aayaResult.shubh ? `<p><strong>Specific Remedy for ${aayaResult.name}:</strong> ${aayaResult.remedy}</p>` : ''}<p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free.</p></div>${overallVerdict}`;
+            let resultHTML = `<h3 style="color:#8B4513; margin-bottom:20px; text-align:center;"><i class="fas fa-chart-line"></i> Vastu Analysis Results</h3><p style="text-align:center; margin-bottom:15px;"><strong>Dimensions:</strong> Length = ${length.toFixed(2)} ft | Breadth = ${breadth.toFixed(2)} ft | Area = ${area.toFixed(2)} sq ft</p><table class="aaya-table"><thead><tr><th>Parameter</th><th>Value / Result</th><th>Interpretation</th></tr></thead><tbody>
+                 <tr><td><strong>📐 Total Area</strong></td><td class="vastu-value">${area.toFixed(2)} sq ft</td><td>Total built-up or plot area</td></tr>
+                 <tr><td><strong>🪔 Aaya (Main)</strong></td><td class="vastu-value">${aayaResult.name} - ${aayaResult.effect}</td><td>${aayaResult.shubh ? '🟢 Auspicious - Brings positive energy' : '🔴 Needs Remedial Action'}</td></tr>
+                 <tr><td><strong>💰 Credit (Aaya)</strong></td><td class="vastu-value">${creditValue} - ${creditStatus}</td><td>Represents income and inflow of wealth</td></tr>
+                 <tr><td><strong>💸 Debit (Vyaya)</strong></td><td class="vastu-value">${debitValue} - ${debitStatus}</td><td>Represents expenditure and outflow</td></tr>
+                 <tr><td><strong>📅 Week Day</strong></td><td class="vastu-value">${weekDay}</td><td>Associated planetary energy for the property</td></tr>
+                 <tr><td><strong>🌙 Tithi</strong></td><td class="vastu-value">${tithiName} (${tithiPaksha})</td><td>Lunar day influence on the dwelling</td></tr>
+                 <tr><td><strong>🏛️ Property Zone</strong></td><td class="vastu-value">${property}</td><td>Dominant Vastu Purusha zone</td></tr>
+                 <tr><td><strong>⭐ Lagna</strong></td><td class="vastu-value">${lagna}</td><td>Ascendant influence on property energy</td></tr>
+                 <tr><td><strong>🕉️ Yoga</strong></td><td class="vastu-value">${yoga}</td><td>Combined planetary influence</td></tr>
+                 <tr><td><strong>🌍 Graha (Planet)</strong></td><td class="vastu-value">${graha}</td><td>Ruling planet for these dimensions</td></tr>
+                 <tr><td><strong>👨‍👩‍👧‍👦 Kula</strong></td><td class="vastu-value">${kula}</td><td>Family/lineage energy type</td></tr>
+                 <tr><td><strong>⏰ Kala</strong></td><td class="vastu-value">${kala}</td><td>Temporal effect on residents</td></tr>
+                 <tr><td><strong>✨ Nakshatra</strong></td><td class="vastu-value">${nakshatra}</td><td>Lunar mansion influence</td></tr>
+                </tbody></table><div class="remedy-suggestion"><h4><i class="fas fa-praying-hands"></i> Vedic Remedies & Recommendations</h4><p>${remedyText}</p>${!aayaResult.shubh ? `<p><strong>Specific Remedy for ${aayaResult.name}:</strong> ${aayaResult.remedy}</p>` : ''}<p style="margin-top:10px;"><strong>General Vastu Tips:</strong> Ensure the main entrance faces an auspicious direction (East/North). Keep the center (Brahmasthana) clutter-free.</p></div>${overallVerdict}`;
             document.getElementById('aayaResultArea').innerHTML = resultHTML;
         };
         
@@ -683,15 +770,115 @@
         };
         window.deleteBooking = (id) => { if(confirm('Delete?')) { let b = JSON.parse(localStorage.getItem('purohithBookings')) || []; b = b.filter(i=>i.id !== id); localStorage.setItem('purohithBookings', JSON.stringify(b)); loadDashboard(); } };
         document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); const name = document.getElementById('contactName').value; const phone = document.getElementById('contactPhone').value; const msg = document.getElementById('contactMsg').value; window.open(`https://wa.me/918328059590?text=Message%20from%20${name}%20(${phone})%3A%20${encodeURIComponent(msg)}`,'_blank'); alert('Message sent'); e.target.reset(); });
+        
+        // ======================= TESTIMONIALS WITH DELETE FUNCTION =======================
+        function loadTestimonials() {
+            let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
+            const container = document.getElementById('testimonialsList');
+            if(!container) return;
+            if(testimonials.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-comment-dots"></i><p>No testimonials yet. Be the first to share your experience!</p></div>'; return; }
+            container.innerHTML = testimonials.map((t, idx) => `<div class="testimonial-item" data-testimonial-idx="${idx}"><i class="fas fa-quote-left" style="color:#FFA500; font-size:1.5rem;"></i><p class="testimonial-text">"${escapeHtml(t.message)}"</p><p class="testimonial-author">— ${escapeHtml(t.name)}</p><small style="color:#999;">${t.date}</small><div><button class="delete-testimonial-btn" onclick="deleteTestimonial(${idx})"><i class="fas fa-trash-alt"></i> Delete</button></div></div>`).join('');
+        }
+        window.addTestimonial = function() {
+            const name = document.getElementById('testimonialName').value.trim();
+            const message = document.getElementById('testimonialMsg').value.trim();
+            if(!name || !message) { alert("Please enter your name and testimonial message."); return; }
+            let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
+            testimonials.unshift({ name: name, message: message, date: new Date().toLocaleDateString('en-IN') });
+            localStorage.setItem('purohithTestimonials', JSON.stringify(testimonials));
+            document.getElementById('testimonialName').value = '';
+            document.getElementById('testimonialMsg').value = '';
+            loadTestimonials();
+            alert("Thank you for your valuable testimonial! ॐ नमो नारायणाय");
+        };
+        window.deleteTestimonial = function(index) {
+            if(confirm("Are you sure you want to delete this testimonial?")) {
+                let testimonials = JSON.parse(localStorage.getItem('purohithTestimonials')) || [];
+                testimonials.splice(index, 1);
+                localStorage.setItem('purohithTestimonials', JSON.stringify(testimonials));
+                loadTestimonials();
+                alert("Testimonial deleted successfully.");
+            }
+        };
+        function loadWallpapers() {
+            let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || [];
+            const container = document.getElementById('wallpapersGrid');
+            if(!container) return;
+            if(wallpapers.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-images"></i><p>No wallpapers uploaded yet. Admin can add divine images.</p></div>'; return; }
+            container.innerHTML = wallpapers.map((w, idx) => `<div class="wallpaper-item"><h3><i class="fas fa-image"></i> ${escapeHtml(w.title)}</h3><img src="${escapeHtml(w.url)}" class="wallpaper-img" alt="${escapeHtml(w.title)}" onclick="window.open('${escapeHtml(w.url)}', '_blank')"><small style="display:block; margin-top:10px;">Added: ${w.date}</small><button class="btn-secondary" style="margin-top:10px; padding:5px 15px;" onclick="deleteWallpaper(${idx})">Delete</button></div>`).join('');
+        }
+        window.addWallpaper = function() {
+            const title = document.getElementById('wallpaperTitle').value.trim();
+            const url = document.getElementById('wallpaperUrl').value.trim();
+            if(!title || !url) { alert("Please enter both title and image URL."); return; }
+            let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || [];
+            wallpapers.unshift({ title: title, url: url, date: new Date().toLocaleDateString('en-IN') });
+            localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers));
+            document.getElementById('wallpaperTitle').value = '';
+            document.getElementById('wallpaperUrl').value = '';
+            loadWallpapers();
+            alert("Wallpaper added successfully! ॐ श्री विष्णवे नमः");
+        };
+        window.deleteWallpaper = function(index) { let wallpapers = JSON.parse(localStorage.getItem('purohithWallpapers')) || []; wallpapers.splice(index, 1); localStorage.setItem('purohithWallpapers', JSON.stringify(wallpapers)); loadWallpapers(); };
+        function loadPrograms() {
+            let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || [];
+            const container = document.getElementById('programsGrid');
+            if(!container) return;
+            if(programs.length === 0) { container.innerHTML = '<div class="card"><i class="fas fa-camera"></i><p>No program photos uploaded yet. Admin can add recent karyakramas.</p></div>'; return; }
+            container.innerHTML = programs.map((p, idx) => `<div class="program-item"><h3><i class="fas fa-calendar-alt"></i> ${escapeHtml(p.title)}</h3><p><strong>📅 ${escapeHtml(p.date)}</strong></p><img src="${escapeHtml(p.imageUrl)}" class="wallpaper-img" alt="${escapeHtml(p.title)}" onclick="window.open('${escapeHtml(p.imageUrl)}', '_blank')"><p style="margin-top:10px;">${escapeHtml(p.description)}</p><button class="btn-secondary" style="margin-top:10px; padding:5px 15px;" onclick="deleteProgram(${idx})">Delete</button></div>`).join('');
+        }
+        window.addProgram = function() {
+            const title = document.getElementById('programTitle').value.trim();
+            const date = document.getElementById('programDate').value.trim();
+            const imageUrl = document.getElementById('programImageUrl').value.trim();
+            const description = document.getElementById('programDesc').value.trim();
+            if(!title || !imageUrl) { alert("Please enter event name and image URL."); return; }
+            let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || [];
+            programs.unshift({ title: title, date: date || "Recent", imageUrl: imageUrl, description: description || "Vedic ceremony performed with Vedic chanting", addedDate: new Date().toLocaleDateString('en-IN') });
+            localStorage.setItem('purohithPrograms', JSON.stringify(programs));
+            document.getElementById('programTitle').value = '';
+            document.getElementById('programDate').value = '';
+            document.getElementById('programImageUrl').value = '';
+            document.getElementById('programDesc').value = '';
+            loadPrograms();
+            alert("Program photo added successfully! ॐ नमो भगवते वासुदेवाय");
+        };
+        window.deleteProgram = function(index) { let programs = JSON.parse(localStorage.getItem('purohithPrograms')) || []; programs.splice(index, 1); localStorage.setItem('purohithPrograms', JSON.stringify(programs)); loadPrograms(); };
+        function escapeHtml(str) { if(!str) return ''; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+        
         window.showPage = function(pageName) {
             document.querySelectorAll('[id$="Page"]').forEach(p => p.classList.add('hidden'));
             document.getElementById(pageName + 'Page').classList.remove('hidden');
             if(pageName === 'dashboard') loadDashboard();
             if(pageName === 'vastu') setTimeout(() => calculateVastuAaya(), 100);
+            if(pageName === 'testimonials') loadTestimonials();
+            if(pageName === 'wallpapers') loadWallpapers();
+            if(pageName === 'programs') loadPrograms();
             window.scrollTo({top:0,behavior:'smooth'});
         };
         function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
         if(document.getElementById('date')) { let d = new Date(); d.setDate(d.getDate()+7); document.getElementById('date').min = d.toISOString().split('T')[0]; }
+        
+        // Initialize with sample data
+        if(!localStorage.getItem('purohithTestimonials')) {
+            localStorage.setItem('purohithTestimonials', JSON.stringify([
+                { name: "Rajesh Sharma", message: "The Upanayanam ceremony was conducted with utmost Vedic precision. The priests were knowledgeable and punctual. Highly recommended!", date: "15 Mar 2025" },
+                { name: "Lakshmi Priya", message: "Carnatic music classes are wonderful. My daughter has improved tremendously. Guru's guidance is exceptional.", date: "20 Feb 2025" }
+            ]));
+        }
+        if(!localStorage.getItem('purohithWallpapers')) {
+            localStorage.setItem('purohithWallpapers', JSON.stringify([
+                { title: "Lord Vishnu", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vishnu_Lakshmi.jpg/800px-Vishnu_Lakshmi.jpg", date: "1 Jan 2025" },
+                { title: "Shri Krishna", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Krishna_with_flute.jpg/800px-Krishna_with_flute.jpg", date: "1 Jan 2025" }
+            ]));
+        }
+        if(!localStorage.getItem('purohithPrograms')) {
+            localStorage.setItem('purohithPrograms', JSON.stringify([
+                { title: "Satyanarayana Vratam", date: "March 2025", imageUrl: "https://images.pexels.com/photos/1070350/pexels-photo-1070350.jpeg", description: "Performed at Devotee's residence with full rituals", addedDate: "10 Mar 2025" },
+                { title: "Gau Pooja & Havan", date: "February 2025", imageUrl: "https://images.pexels.com/photos/219996/pexels-photo-219996.jpeg", description: "Special Gau Seva event at the goshala", addedDate: "15 Feb 2025" }
+            ]));
+        }
+        
         generateRituals(); generateEnhancedRashiGrid(); showPage('home');
     </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "3acec5789e7c44d995b9ab3045cba202"}'></script><!-- End Cloudflare Web Analytics -->
